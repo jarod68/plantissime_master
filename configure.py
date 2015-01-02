@@ -101,6 +101,9 @@ if NI !="":
 	print ("set NI="+NI+" "+xbeeCommand("NI", NI))
 print ("NI="+xbeeCommand("NI"))
 
+print ("SH="+xbeeCommand("SH"))
+print ("SL="+xbeeCommand("SL"))
+
 print ("Exit="+xbeeExitCommandMode())
 
 port.close()
