@@ -19,15 +19,16 @@ def usage():
 	print " --MY=arg\tset the XBee device address property with the specified argument"
 	print " --NI=arg\tset the XBee node identifier property with the specified argument"
 
-port = serial.Serial("/dev/ttyAMA0", baudrate=9600, timeout=2)
-port.close();
-port.open();
+port = serial.Serial("/dev/ttyAMA0", baudrate=9600, timeout=4)
+port.close()
+port.open()
+
 
 def readlineCR():
     rv = ""
     while True:
         ch = port.read()
-        if ch=='\r' or ch=='' or ch=='\n':
+	if ch=='\r' or ch=='' or ch=='\n':
             return rv
         rv += ch
 
@@ -71,7 +72,8 @@ for opt, arg in opts:
   elif opt in ("--NI"):
      NI=arg
 
-time.sleep(2)
+time.sleep(3)
+port.flushInput()
 cmdMode = enterXbeeCommandMode()
 print ("enter +++ ="+cmdMode)
 if cmdMode != "OK":
