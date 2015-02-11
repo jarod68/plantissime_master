@@ -1,0 +1,18 @@
+{ 
+	"name": "plantissime/plantissime",
+	"version": "0.0.1-alpha",
+	"require": {
+		"silex/silex": "~1.2",
+		"doctrine/dbal": "~2.5",
+		"twig/twig": "~1.18"
+	},
+	"scripts": {
+		"run": [
+			"echo 'Started web server on http://localhost:8888'",
+			"php -S localhost:8888 -t web/ web/index.php"
+		]
+	},
+	"autoload": {
+		"psr-0": { "Plantissime": "src" }
+	}
+}
