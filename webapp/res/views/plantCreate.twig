@@ -1,13 +1,11 @@
 {% extends "layout.twig" %}
 
+{% block title %}Add a new plant{% endblock %}
+
 {% block content %}
-<div class="page-header">
-  <h3>Add a new plant</h3>
-</div>
 <form action="#" method="post">
     {{ form_widget(form) }}
 
     <input type="submit" name="submit" />
 </form>
-
 {% endblock %}

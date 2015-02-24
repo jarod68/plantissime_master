@@ -80,8 +80,25 @@ class AppController implements ControllerProviderInterface
 
     public function plantDetail(Application $app, $id)
     {
+        // 
         $plant = $app['db']->fetchAssoc('SELECT * FROM Plants WHERE id = ?', array($id));
-        return $app['twig']->render('plantDetail.twig', array('plant' => $plant));
+
+
+        // Luminosity data
+        $dataLum = $app['db']->fetchAll('SELECT timestamp, luminosity FROM Records WHERE (s0_link = ? OR s1_link = ? OR s2_link = ? OR s3_link = ?)',
+            array($plant['id'], $plant['id'], $plant['id'], $plant['id']));
+
+        // Humidity data
+        $dataHum = $app['db']->fetchAll('SELECT timestamp, humidity FROM Records WHERE (s0_link = ? OR s1_link = ? OR s2_link = ? OR s3_link = ?)',
+            array($plant['id'], $plant['id'], $plant['id'], $plant['id']));
+
+        // Temperature data
+        $dataTemp = $app['db']->fetchAll('SELECT timestamp, temperature FROM Records WHERE (s0_link = ? OR s1_link = ? OR s2_link = ? OR s3_link = ?)',
+            array($plant['id'], $plant['id'], $plant['id'], $plant['id']));
+
+
+
+        return $app['twig']->render('plantDetail.twig', array('plant' => $plant, 'lums' => $dataLum, 'hums' => $dataHum, 'temps' => $dataTemp));
     }
 
     /* SENSORS */
