@@ -1,0 +1,20 @@
+{% extends "layout.twig" %}
+
+{% block title %}Sensors{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-2"><a href="sensor/create" class="btn btn-default">Add a new sensor</a></div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      {% for sensor in sensors %}
+      <a href="/sensor/{{ sensor.id }}" class="list-group-item">
+        <h4 class="list-group-item-heading">{{ sensor.node_identifier }}</h4>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

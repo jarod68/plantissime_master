@@ -1,6 +1,8 @@
 <?php
 
-namespace Plantissime;
+// For later 
+
+namespace PlantissimeApi;
 
 use Silex\Application;
 use Silex\ControllerProviderInterface;
