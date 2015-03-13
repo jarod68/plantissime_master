@@ -1,0 +1,103 @@
+extends ../layout.jade
+
+block page-title
+  h3 Plants
+  
+block content
+  .row
+    .col-md-2
+      include ./block_list.jade
+    .col-md-10
+      .row
+        .col-md-2
+          .thumbnail
+            img(src='/images/cactus.jpg')/
+        .col-md-10
+          .panel.panel-default
+            .panel-body
+              p Name : #{currentPlant.name} 
+              p Specie : #{currentPlant.specie} 
+      .row
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Temperature 
+                small 
+                  a(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a(href='#') Month
+            .panel-body
+              div
+                canvas#chartT
+                  .text-center No data yet.
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Luminosity
+            .panel-body
+              div
+                canvas#chartL
+                  .text-center No data yet.
+      .row
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Ground humidity
+            .panel-body
+              div
+                canvas#chartHG
+                  .text-center No data yet.
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Air humidity
+            .panel-body
+              div
+                canvas#chartHA
+                  .text-center No data yet.
+
+  script(src='/js/Chart.min.js')
+  script.
+    function buildChart(plantId, measureType, period, htmlPlace) {
+      $.get('/api/plant/'+plantId+'/measures/'+measureType+'?period='+period, function(measures) {
+        
+        var labels = [];
+        var data = [];
+        for(var i in measures) {
+          labels.push(''); //measures[i].time);
+          data.push(measures[i].value);
+        }
+        
+        var options = {
+          scaleBeginAtZero: true,
+          responsive: true,
+          scaleShowLabels: true,
+          pointDotRadius: 2,
+          pointHitDetectionRadius:2,
+          showLabes: false
+        };
+        var params = {
+          labels: labels,
+          datasets: [{
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              data: data
+            }]
+        };
+        var ctx = $(htmlPlace).get(0).getContext('2d');
+        new Chart(ctx).Line(params, options);
+      });
+    }
+    $(document).ready(function() {
+      buildChart(#{currentPlant.id}, 'temperature', 'week', '#chartT');
+      buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
+      buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+      buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
+    });
+    

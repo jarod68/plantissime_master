@@ -1,0 +1,43 @@
+mixin plantSelect(name, label)
+  .form-group
+    label=label
+    select.form-control(name=name, value=0)
+      option(value=0) -- None --
+      each plant in plants
+        option(value=plant.id) #{plant.name}
+
+
+button(class=['btn', 'btn-default'] data-toggle='modal', data-target='#createSensorModal') Add a sensor
+
+#createSensorModal(class=['modal', 'fade'], tabinex='-1', role='dialog', aria-labelledby='createPlantModalLabel')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title Add a sensor
+      .modal-body
+        form(id='createForm', action='/sensor/create', method='POST')
+          .form-group
+            label Name
+            input.form-control(type='text', name='name')
+          .form-group
+            label Serial number
+            input.form-control(type='text', name='serialNumber')
+              
+          //- TODO Change this to be dynamic
+          +plantSelect('plant1', 'Plant 1')
+          +plantSelect('plant2', 'Plant 2')
+          +plantSelect('plant3', 'Plant 3')
+          +plantSelect('plant4', 'Plant 4')
+          
+      .modal-footer
+        button(id='createSubmit', type='submit', class=['btn btn-primary']) Add
+        button(type='button', class=['btn btn-default'], data-dismiss='modal') Cancel
+
+
+append script
+  script.
+    $(document).ready(function() {
+      $('#createSubmit').click(function() {
+          $('#createForm').submit();
+      });
+    });
