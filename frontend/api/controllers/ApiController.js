@@ -22,29 +22,30 @@ module.exports = {
 		// Calculate the period
 		var periodEnd = new Date();
 
-		var periodStart;
+		var periodStart = new Date();
 		switch(period) {
 
 			case 'day':
-				periodStart = new Date().setDate(periodEnd.getDate()-1);
+				periodStart.setDate(periodEnd.getDate()-1);
 				break;
 
 			case 'week':
-				periodStart = new Date().setDate(periodEnd.getDate()-7);
+				periodStart.setDate(periodEnd.getDate()-7);
 				break;
 
 			case 'month':
-				periodStart = new Date().setMonth(periodEnd.getMonth()-1);
+				periodStart.setMonth(periodEnd.getMonth()-1);
 				break;
 
 			// Fix the default start to (end - 1 day)
 			default:
-				periodStart = new Date().setDate(periodEnd.getDate()-1);
+				periodStart.setDate(periodEnd.getDate()-1);
 
 		}
 
 		console.log(plantId);
-		console.log(type);
+    console.log(type);
+		console.log(periodStart.toLocaleString());
 
 		// Get measures
 		Measure.find()

@@ -23,11 +23,11 @@ block content
             .panel-heading
               h4.panel-title Temperature 
                 small 
-                  a(href='#') Day
+                  a#chartTday(href='#') Day
                   | &nbsp;|&nbsp;
-                  a(href='#') Week
+                  a#chartTweek(href='#') Week
                   | &nbsp;|&nbsp;
-                  a(href='#') Month
+                  a#chartTmonth(href='#') Month
             .panel-body
               div
                 canvas#chartT
@@ -36,6 +36,12 @@ block content
           .panel.panel-default
             .panel-heading
               h4.panel-title Luminosity
+                small 
+                  a#chartLday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartLweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartLmonth(href='#') Month
             .panel-body
               div
                 canvas#chartL
@@ -45,6 +51,12 @@ block content
           .panel.panel-default
             .panel-heading
               h4.panel-title Ground humidity
+                small 
+                  a#chartHGday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartHGweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartHGmonth(href='#') Month
             .panel-body
               div
                 canvas#chartHG
@@ -53,6 +65,12 @@ block content
           .panel.panel-default
             .panel-heading
               h4.panel-title Air humidity
+                small 
+                  a#chartHAday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartHAweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartHAmonth(href='#') Month
             .panel-body
               div
                 canvas#chartHA
@@ -62,11 +80,21 @@ block content
   script.
     function buildChart(plantId, measureType, period, htmlPlace) {
       $.get('/api/plant/'+plantId+'/measures/'+measureType+'?period='+period, function(measures) {
-        
+        var chart = $(htmlPlace).data('chart');
+        if(chart != null) {
+          chart.destroy();
+          $(htmlPlace).data('chart', null);
+        }
         var labels = [];
         var data = [];
+        var previousTime = new Date();
         for(var i in measures) {
-          labels.push(''); //measures[i].time);
+          if(previousTime.getDate() != new Date(measures[i].time).getDate()) {
+            previousTime = new Date(measures[i].time);
+            labels.push(previousTime.toLocaleDateString());
+          }
+          else
+            labels.push('');
           data.push(measures[i].value);
         }
         
@@ -91,7 +119,8 @@ block content
             }]
         };
         var ctx = $(htmlPlace).get(0).getContext('2d');
-        new Chart(ctx).Line(params, options);
+        chart = new Chart(ctx).Line(params, options);
+        $(htmlPlace).data('chart', chart);
       });
     }
     $(document).ready(function() {
@@ -99,5 +128,45 @@ block content
       buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
       buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
       buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
+      
+      $('#chartTday').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'day', '#chartT');
+      });
+      $('#chartTweek').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'week', '#chartT');
+      });
+      $('#chartTmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'month', '#chartT');
+      })
+      
+      $('#chartLday').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'day', '#chartL');
+      });
+      $('#chartLweek').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
+      });
+      $('#chartLmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'month', '#chartL');
+      })
+      
+      $('#chartHGday').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'day', '#chartHG');
+      });
+      $('#chartHGweek').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+      });
+      $('#chartHGmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'month', '#chartHG');
+      });
+      
+      $('#chartHAday').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'day', '#chartHA');
+      });
+      $('#chartHAweek').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
+      });
+      $('#chartHAmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'month', '#chartHA');
+      })
     });
     
