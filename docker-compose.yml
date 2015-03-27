@@ -1,0 +1,15 @@
+frontend:
+  build: .
+  working_dir: /usr/src/app
+  links: 
+    - db
+  ports:
+    - "1337:1337"
+  command: node app.js
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: test
+  ports:
+    - "3306:3306"
+

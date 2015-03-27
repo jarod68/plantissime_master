@@ -1,13 +1,18 @@
+echo "--Install node.js"
+
+wget http://node-arm.herokuapp.com/node_latest_armhf.deb 
+sudo dpkg -i node_latest_armhf.deb
+
+echo "-- Test node.js"
+node -v
+npm --version
 
 
-// Install node.js
-sudo apt-get install nodejs npm
+echo "-- Install nodejs packages"
+sudo npm install 
 
-// Install dependencies
-sudo npm install
+echo "-- Install bower"
+sudo npm install -g bower
 
-// Install bower
-sudo npm -g bower
-
-// Install assets
-bower install
+echo "-- Install bower packages"
+bower install --allow-root
