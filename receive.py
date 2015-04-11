@@ -65,7 +65,7 @@ def onReceive(payload):
 	r = requests.post(url, data=payload, headers=headers)
 	print ("Sending to webservice... " + r.text)
 	print (payload)
-        if r.text == "true":
+        if r.status_code == 200:
              ledOn(Color.GREEN)
         else:
              ledOn(Color.YELLOW)
