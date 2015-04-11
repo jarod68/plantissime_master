@@ -60,7 +60,7 @@ def readlineCR():
             return rv
 
 def onReceive(payload):
-	url = 'http://localhost/receive'
+	url = 'http://localhost:1337/receive'
 	headers = {'content-type': 'application/json'}
 	r = requests.post(url, data=payload, headers=headers)
 	print ("Sending to webservice... " + r.text)
