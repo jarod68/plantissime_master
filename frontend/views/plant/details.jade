@@ -1,0 +1,172 @@
+extends ../layout.jade
+
+block page-title
+  h3 Plants
+  
+block content
+  .row
+    .col-md-2
+      include ./block_list.jade
+    .col-md-10
+      .row
+        .col-md-2
+          .thumbnail
+            img(src='/images/cactus.jpg')/
+        .col-md-10
+          .panel.panel-default
+            .panel-body
+              p Name : #{currentPlant.name} 
+              p Specie : #{currentPlant.specie} 
+      .row
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Temperature 
+                small 
+                  a#chartTday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartTweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartTmonth(href='#') Month
+            .panel-body
+              div
+                canvas#chartT
+                  .text-center No data yet.
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Luminosity
+                small 
+                  a#chartLday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartLweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartLmonth(href='#') Month
+            .panel-body
+              div
+                canvas#chartL
+                  .text-center No data yet.
+      .row
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Ground humidity
+                small 
+                  a#chartHGday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartHGweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartHGmonth(href='#') Month
+            .panel-body
+              div
+                canvas#chartHG
+                  .text-center No data yet.
+        .col-md-6
+          .panel.panel-default
+            .panel-heading
+              h4.panel-title Air humidity
+                small 
+                  a#chartHAday(href='#') Day
+                  | &nbsp;|&nbsp;
+                  a#chartHAweek(href='#') Week
+                  | &nbsp;|&nbsp;
+                  a#chartHAmonth(href='#') Month
+            .panel-body
+              div
+                canvas#chartHA
+                  .text-center No data yet.
+
+  script(src='/js/Chart.min.js')
+  script.
+    function buildChart(plantId, measureType, period, htmlPlace) {
+      $.get('/api/plant/'+plantId+'/measures/'+measureType+'?period='+period, function(measures) {
+        var chart = $(htmlPlace).data('chart');
+        if(chart != null) {
+          chart.destroy();
+          $(htmlPlace).data('chart', null);
+        }
+        var labels = [];
+        var data = [];
+        var previousTime = new Date();
+        for(var i in measures) {
+          if(previousTime.getDate() != new Date(measures[i].time).getDate()) {
+            previousTime = new Date(measures[i].time);
+            labels.push(previousTime.toLocaleDateString());
+          }
+          else
+            labels.push('');
+          data.push(measures[i].value);
+        }
+        
+        var options = {
+          scaleBeginAtZero: true,
+          responsive: true,
+          scaleShowLabels: true,
+          pointDotRadius: 2,
+          pointHitDetectionRadius:2,
+          showLabes: false
+        };
+        var params = {
+          labels: labels,
+          datasets: [{
+              fillColor: "rgba(151,187,205,0.2)",
+              strokeColor: "rgba(151,187,205,1)",
+              pointColor: "rgba(151,187,205,1)",
+              pointStrokeColor: "#fff",
+              pointHighlightFill: "#fff",
+              pointHighlightStroke: "rgba(151,187,205,1)",
+              data: data
+            }]
+        };
+        var ctx = $(htmlPlace).get(0).getContext('2d');
+        chart = new Chart(ctx).Line(params, options);
+        $(htmlPlace).data('chart', chart);
+      });
+    }
+    $(document).ready(function() {
+      buildChart(#{currentPlant.id}, 'temperature', 'week', '#chartT');
+      buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
+      buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+      buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
+      
+      $('#chartTday').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'day', '#chartT');
+      });
+      $('#chartTweek').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'week', '#chartT');
+      });
+      $('#chartTmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'temperature', 'month', '#chartT');
+      })
+      
+      $('#chartLday').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'day', '#chartL');
+      });
+      $('#chartLweek').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
+      });
+      $('#chartLmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'luminosity', 'month', '#chartL');
+      })
+      
+      $('#chartHGday').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'day', '#chartHG');
+      });
+      $('#chartHGweek').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+      });
+      $('#chartHGmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'humdityGround', 'month', '#chartHG');
+      });
+      
+      $('#chartHAday').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'day', '#chartHA');
+      });
+      $('#chartHAweek').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
+      });
+      $('#chartHAmonth').click(function() {
+        buildChart(#{currentPlant.id}, 'humidityAir', 'month', '#chartHA');
+      })
+    });
+    
