@@ -21,12 +21,9 @@
 
 module.exports.connections = {
 
-  /***************************************************************************
-  *                                                                          *
-  * MySQL is the world's most popular relational database.                   *
-  * http://en.wikipedia.org/wiki/MySQL                                       *
-  *                                                                          *
-  ***************************************************************************/
+  /*
+   * MySQL Database                                                                       
+   */
   mysqlServer: {
     adapter: 'sails-mysql',
     host: '127.0.0.1',

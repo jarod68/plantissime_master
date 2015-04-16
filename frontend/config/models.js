@@ -16,6 +16,6 @@ module.exports.models = {
 
   // Safe : never auto-migrate my database
   // Drop : wipe/drop all data
-  migrate: 'drop'
+  migrate: 'safe'
 
 };
