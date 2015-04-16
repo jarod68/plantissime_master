@@ -126,7 +126,7 @@ block content
     $(document).ready(function() {
       buildChart(#{currentPlant.id}, 'temperature', 'week', '#chartT');
       buildChart(#{currentPlant.id}, 'luminosity', 'week', '#chartL');
-      buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+      buildChart(#{currentPlant.id}, 'humidityGround', 'week', '#chartHG');
       buildChart(#{currentPlant.id}, 'humidityAir', 'week', '#chartHA');
       
       $('#chartTday').click(function() {
@@ -150,13 +150,13 @@ block content
       })
       
       $('#chartHGday').click(function() {
-        buildChart(#{currentPlant.id}, 'humdityGround', 'day', '#chartHG');
+        buildChart(#{currentPlant.id}, 'humidityGround', 'day', '#chartHG');
       });
       $('#chartHGweek').click(function() {
-        buildChart(#{currentPlant.id}, 'humdityGround', 'week', '#chartHG');
+        buildChart(#{currentPlant.id}, 'humidityGround', 'week', '#chartHG');
       });
       $('#chartHGmonth').click(function() {
-        buildChart(#{currentPlant.id}, 'humdityGround', 'month', '#chartHG');
+        buildChart(#{currentPlant.id}, 'humidityGround', 'month', '#chartHG');
       });
       
       $('#chartHAday').click(function() {
