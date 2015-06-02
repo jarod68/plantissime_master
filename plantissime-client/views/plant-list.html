@@ -1,0 +1,27 @@
+<div class="ui vertical padded centered grid">
+	<div class="row">
+	  <div class="column">
+	    <h1 class="ui dividing header">Plants</h1>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="column">
+			<div ng-include="'views/plant-create.html'"></div>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="column">
+	    <div class="ui divided items">
+			<div class="item" ng-repeat="plant in plants">
+				<div class="image">
+      				<img />
+    			</div>
+				<div class="content">
+					<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+</div>
+

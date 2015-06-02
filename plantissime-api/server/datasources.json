@@ -1,0 +1,20 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mysqlDB": {
+    "host": "host",
+    "port": 3306,
+    "database": "database",
+    "username": "username",
+    "password": "password",
+    "name": "mysqlDB",
+    "connector": "mysql"
+  },
+  "staticDB": {
+    "name": "staticDB",
+    "connector": "memory",
+    "file": "static.json"
+  }
+}

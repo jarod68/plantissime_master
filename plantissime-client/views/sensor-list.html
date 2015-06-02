@@ -1,0 +1,29 @@
+<div class="ui vertical padded centered grid">
+	<div class="row">
+	  <div class="column">
+	    <h1 class="ui dividing header">Sensors</h1>
+	  </div>
+	</div>
+	<div class="row">
+		<div class="column">
+			<div ng-include="'views/sensor-create.html'"></div>
+		</div>
+	</div>
+	<div class="row">
+	  <div class="column">
+	    <table style="width:90%;">
+			<tr>
+				<th>Model number</th>
+				<th>Item number</th>
+				<th>Targets</th>
+			</tr>
+			<tr ng-repeat="sensor in sensors">
+				<td>{{sensor.modelNumber}}</td>
+				<td>{{sensor.itemNumber}}</td>
+				<td>{{sensor.targets.length}}</td>
+			</tr>
+		</table>
+	  </div>
+	</div>
+</div>
+

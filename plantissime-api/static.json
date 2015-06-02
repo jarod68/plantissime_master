@@ -1,0 +1,18 @@
+{
+  "ids": {
+    "SensorModel": 4,
+    "Probe": 1,
+    "PlantClassification": 4
+  },
+  "models": {
+    "SensorModel": {
+      "1": "{\"modelNumber\":\"1\",\"id\":1,\"sensorId\":0}",
+      "2": "{\"modelNumber\":\"11\",\"id\":2}",
+      "3": "{\"modelNumber\":\"2\",\"probes\":[{\"type\":\"temperature\",\"isGlobal\":true},{\"type\":\"airHumidity\",\"isGlobal\":true},{\"type\":\"luminosity\",\"isGlobal\":true},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":0},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":1},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":2},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":3}],\"targetsCount\":4,\"targetsType\":\"Plant\",\"id\":3}"
+    },
+    "Probe": {},
+    "PlantClassification": {
+      "1": "{\"kingdom\":\"Plantae\",\"division\":\"Magnoliophyta\",\"classe\":\"Magnoliopsida\",\"order\":\"Caryophyllales\",\"family\":\"Cactaceae\",\"genus\":\"\",\"specie\":\"\",\"id\":1}"
+    }
+  }
+}

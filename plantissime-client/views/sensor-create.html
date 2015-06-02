@@ -1,0 +1,57 @@
+<div ng-controller="SensorCreateController">
+  <button class="ui button" ng-click="sensorCreateStep1()"><i class="add icon"></i>Add a sensor</button>
+  <div id="SensorCreateStep1" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Add a sensor</div>
+    <div class="content">
+      <div class="ui form">
+        <div class="two fields">
+          <div class="required field">
+        	  <label>Model</label>
+        	  <input type="text" name="modelNumber" ng-model="sensor.modelNumber" />
+          </div>
+          <div class="required field">
+        	  <label>Item</label>
+        	  <input type="text" name="itemNumber" ng-model="sensor.itemNumber" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui button" ng-click="sensorCreateStep2()">Next</button>
+    </div>
+  </div>
+  
+  <div id="SensorCreateStep2" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Add a sensor</div>
+    <div class="content">
+      <div class="ui form">
+        <div class="two fields">
+          <div class="field">
+        	  <label>Model</label>
+        	  {{sensor.modelNumber}}
+          </div>
+          <div class="field">
+        	  <label>Item</label>
+        	  {{sensor.itemNumber}}
+          </div>
+        </div>
+        <div class="required field">
+    	  	<label>Name</label>
+    	  	<input type="text" name="Name" />
+        </div>
+        <div class="field" ng-repeat="selectedTarget in selectedTargets track by $index">
+    	  	<label>{{sensorModel.targetsType}} {{$index + 1}}</label>
+          <select ng-model="selectedTarget.id">
+            <option value="0">-- Choose --</option>
+            <option ng-repeat="target in targets" value="{{target.id}}">{{target.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui right labeled icon positive button" ng-click="sensorCreateStep3()">Confirm</button>
+    </div>
+  </div>
+</div>

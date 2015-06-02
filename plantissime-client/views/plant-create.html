@@ -1,0 +1,49 @@
+<div ng-controller="PlantCreateController">
+  <button class="ui button" ng-click="openPlantCreate()"><i class="add icon"></i>Add a plant</button>
+  <div id="PlantCreateForm" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Add a plant</div>
+    <div class="content">
+      <form class="ui form">
+        <div class="field">
+      	  <label>Name</label>
+      	  <input type="text" name="name" ng-model="plant.name" />
+        </div>
+        <div class="field">
+      	  <label>Specie</label>
+          <div>
+            <select name="specie" ng-model="plant.classificationId">
+              <option ng-repeat="plantClasse in plantClasses" value="{{plantClasse.id}}">
+                {{plantClasse.kingdom}} 
+                {{plantClasse.division}} 
+                {{plantClasse.classe}}
+                {{plantClasse.order}}
+                {{plantClasse.family}}
+                {{plantClasse.genus}}
+                {{plantClasse.specie}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui right labeled icon positive button" ng-click="confirmPlantCreate(plant)">
+        Confirm
+        <i class="checkmark icon"></i>
+      </button>
+      <button type="submit" class="ui black deny button">Cancel</button>
+    </div>
+  </div>
+  
+  <div id="PlantCreateConfirmation" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Add a plant</div>
+    <div class="content">
+      <p>Plant "{{plant.name}}" added.</p>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui button">Ok</button>
+    </div>
+  </div>
+</div>

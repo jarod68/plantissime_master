@@ -1,0 +1,35 @@
+{
+  "name": "PlantClassification",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "kingdom": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string"
+    },
+    "classe": {
+      "type": "string"
+    },
+    "order": {
+      "type": "string"
+    },
+    "family": {
+      "type": "string"
+    },
+    "genus": {
+      "type": "string"
+    },
+    "specie": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

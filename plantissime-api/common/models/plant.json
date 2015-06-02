@@ -1,0 +1,24 @@
+{
+  "name": "Plant",
+  "base": "Target",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "classificationId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "classification": {
+      "type": "hasOne",
+      "model": "PlantClassification",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": []
+}

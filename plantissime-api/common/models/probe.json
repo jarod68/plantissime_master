@@ -1,0 +1,25 @@
+{
+  "name": "Probe",
+  "base": "Model",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "isGlobal": {
+      "type": "boolean",
+      "required": true
+    },
+    "targetIndex": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}

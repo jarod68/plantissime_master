@@ -1,0 +1,28 @@
+{
+  "name": "Sensor",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "modelNumber": {
+      "type": "string",
+      "required": true
+    },
+    "itemNumber": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "targets": {
+      "type": "hasAndBelongsToMany",
+      "model": "Plant",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": []
+}
