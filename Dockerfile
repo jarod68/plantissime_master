@@ -19,17 +19,21 @@ RUN dpkg -i node_latest_armhf.deb
 RUN npm install -g bower
 
 # Copy files app
-ADD ./frontend /root/app
-WORKDIR /root/app
+ADD . /root/app
 
-# Install node.js dependencies
+# Install API part
+WORKDIR /root/app/plantissime-api
 RUN npm install
 
+# Install API part
+WORKDIR /root/app/plantissime-client
+RUN npm install
 
-# Install bower dependencies
-RUN bower install --allow-root
+WORKDIR /root/app/plantissime-client/semantic
+RUN gulp build
 
-# 
+# Run
+WORKDIR /root/app
 RUN sudo chmod +x ./run.sh
 
 # Open port
