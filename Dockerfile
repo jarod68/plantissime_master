@@ -35,6 +35,6 @@ WORKDIR /root/app
 RUN sudo chmod +x ./run.sh
 
 # Open port
-EXPOSE 1337
+EXPOSE 3000
 
 CMD ["./run.sh"]
