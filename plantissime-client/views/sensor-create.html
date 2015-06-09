@@ -54,4 +54,15 @@
       <button type="submit" class="ui right labeled icon positive button" ng-click="sensorCreateStep3()">Confirm</button>
     </div>
   </div>
+  
+  <div id="SensorCreateError" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Error</div>
+    <div class="content">
+      <p>{{error.message}}</p>
+    </div>
+    <div class="actions">
+      <button type="submit" class="ui right labeled icon close button">Ok</button>
+    </div>
+  </div>
 </div>

@@ -56,20 +56,25 @@ plantissimeApp.controller('SensorCreateController', function ($scope, $http) {
   // Step 2 : Get specific sensor data
   $scope.sensorCreateStep2 = function() {
     $('#SensorCreateStep1').modal('hide');
-    $http.get('/api/sensormodels/model/'+$scope.sensor.modelNumber).success(function(data) {
-      $scope.sensorModel = data;
-      // Initialize table id
-      $scope.selectedTargets = new Array();
-      for(var i = 0; i < $scope.sensorModel.targetsCount; i++)
-      {
-        $scope.selectedTargets.push({id:"0"});
-      }
-      // Get possible targets
-      $http.get('/api/'+$scope.sensorModel.targetsType+'s').success(function(data) {
-        $scope.targets = data;
+    $http.get('/api/sensormodels/model/'+$scope.sensor.modelNumber).
+      success(function(data) {
+        $scope.sensorModel = data;
+        // Initialize table id
+        $scope.selectedTargets = new Array();
+        for(var i = 0; i < $scope.sensorModel.targetsCount; i++)
+        {
+          $scope.selectedTargets.push({id:"0"});
+        }
+        // Get possible targets
+        $http.get('/api/'+$scope.sensorModel.targetsType+'s').success(function(data) {
+          $scope.targets = data;
+        });
+        $('#SensorCreateStep2').modal('show');
+      }).
+      error(function(data, status, headers, config) {
+        $scope.error = data.error;
+        $('#SensorCreateError').modal('show');
       });
-      $('#SensorCreateStep2').modal('show');
-    });
   };
   
   // Step 3 : Create
