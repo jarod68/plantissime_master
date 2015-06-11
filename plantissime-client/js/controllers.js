@@ -1,4 +1,4 @@
-var plantissimeControllers = angular.module('PlantissimeControllers', []);
+var plantissimeControllers = angular.module('PlantissimeControllers', ["chart.js"]);
 
 plantissimeApp.controller('HomeController', function ($scope) {
   $scope.section = "home";
@@ -11,10 +11,38 @@ plantissimeApp.controller('PlantsController', function ($scope, $http) {
   });
 });
 
-plantissimeApp.controller('PlantDetailController', function ($scope, $http, $routeParams) {
+plantissimeApp.controller('PlantDetailController', function ($scope, $http, $routeParams, $interval) {
   $http.get('/api/plants/' + $routeParams.plantId + '?filter[include]=classification').success(function(data) {
     $scope.plant = data;
   });
+  
+  $scope.loadChart = function loadChart(measureType) {
+    $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][type]='+measureType).success(function(data) {
+      $scope[measureType+"Labels"] = [];
+      $scope[measureType+"Series"] = ['Temperature'];
+      $scope[measureType+"Data"] = [[]];
+      var previousTime = new Date();
+      for(var i = 0; i < data.length; i++) {
+        if(previousTime.getDate() != new Date(data[i].time).getDate() | (i+1 == data.length)) {
+          previousTime = new Date(data[i].time);
+          $scope[measureType+"Labels"].push(previousTime.toLocaleDateString());
+        }
+        else {
+          $scope[measureType+"Labels"].push('');
+        }
+        $scope[measureType+"Data"][0].push(data[i].value);
+      }
+      $scope.onClick = function (points, evt) {
+        console.log(points, evt);
+      };
+    });
+  };
+  $interval(function () {
+    $scope.loadChart('temperature');
+    $scope.loadChart('luminosity');
+    $scope.loadChart('airHumidity');
+    $scope.loadChart('groundHumidity');
+  }, 10000);
 });
 
 plantissimeApp.controller('PlantCreateController', function ($scope, $http) {
@@ -35,16 +63,16 @@ plantissimeApp.controller('PlantCreateController', function ($scope, $http) {
   };
 });
 
+// Sensors List
 plantissimeApp.controller('SensorsController', function ($scope, $http) {
   
-  $scope.openSensorCreate = function() {
-    $('#SensorCreate').modal('show');
-  };
   $http.get('/api/sensors?filter[include]=targets').success(function(data) {
     $scope.sensors = data;
   });
+  
 });
 
+// Sensor Create
 plantissimeApp.controller('SensorCreateController', function ($scope, $http) {
   // Step 1 : Get sensor model
   $scope.sensorCreateStep1 = function() {
