@@ -4,11 +4,11 @@
     "connector": "memory"
   },
   "mysqlDB": {
-    "host": "host",
+    "host": "localhost",
     "port": 3306,
-    "database": "database",
-    "username": "username",
-    "password": "password",
+    "database": "plantissime",
+    "username": "root",
+    "password": "root",
     "name": "mysqlDB",
     "connector": "mysql"
   },
