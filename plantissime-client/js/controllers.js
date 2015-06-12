@@ -16,14 +16,21 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
     $scope.plant = data;
   });
   
-  $scope.loadChart = function loadChart(measureType) {
+  var lastTimes = [];
+  var previousTime;
+  
+  $scope.createChart = function loadChart(measureType) {
     $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][type]='+measureType).success(function(data) {
       $scope[measureType+"Labels"] = [];
       $scope[measureType+"Series"] = ['Temperature'];
       $scope[measureType+"Data"] = [[]];
-      var previousTime = new Date();
+      previousTime = new Date();
+      lastTimes[measureType] = new Date(0);
       for(var i = 0; i < data.length; i++) {
-        if(previousTime.getDate() != new Date(data[i].time).getDate() | (i+1 == data.length)) {
+        if(data[i].time > lastTimes[measureType]) {
+          lastTimes[measureType] = data[i].time;
+        }
+        if(previousTime.getDate() != new Date(data[i].time).getDate()) {
           previousTime = new Date(data[i].time);
           $scope[measureType+"Labels"].push(previousTime.toLocaleDateString());
         }
@@ -35,6 +42,31 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
       $scope.onClick = function (points, evt) {
         console.log(points, evt);
       };
+    });
+  };
+  $scope.createChart('temperature');
+  $scope.createChart('luminosity');
+  $scope.createChart('airHumidity');
+  $scope.createChart('groundHumidity');
+  
+  $scope.loadChart = function loadChart(measureType) {
+    $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][and][0][type]='+measureType+'[where][and][1][time][gt]='+lastTimes[measureType].toJSON()).success(function(data) {
+      $scope[measureType+"Labels"] = [];
+      $scope[measureType+"Data"] = [[]];
+      previousTime = lastTimes[measureType];
+      for(var i = 0; i < data.length; i++) {
+        if(data[i].time > lastTimes[measureType]) {
+          lastTimes[measureType] = data[i].time;
+        }
+        if(previousTime.getDate() != new Date(data[i].time).getDate()) {
+          previousTime = new Date(data[i].time);
+          $scope[measureType+"Labels"].push(previousTime.toLocaleDateString());
+        }
+        else {
+          $scope[measureType+"Labels"].push('');
+        }
+        $scope[measureType+"Data"][0].push(data[i].value);
+      }
     });
   };
   $interval(function () {
