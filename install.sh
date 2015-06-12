@@ -7,7 +7,7 @@ wget http://node-arm.herokuapp.com/node_latest_armhf.deb
 dpkg -i node_latest_armhf.deb
 
 # Install gulp
-RUN npm install -g gulp
+npm install -g gulp
 
 # Install plantissime-api
 cd  plantissime-api
