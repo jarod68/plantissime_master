@@ -18,19 +18,20 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
   
   var lastTimes = [];
   var previousTime;
-  
-  $scope.createChart = function loadChart(measureType) {
+    
+  $scope.createChart = function (measureType) {
     $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][type]='+measureType).success(function(data) {
       $scope[measureType+"Labels"] = [];
       $scope[measureType+"Series"] = ['Temperature'];
       $scope[measureType+"Data"] = [[]];
-      previousTime = new Date();
+      previousTime = new Date(0);
       lastTimes[measureType] = new Date(0);
       for(var i = 0; i < data.length; i++) {
         if(data[i].time > lastTimes[measureType]) {
           lastTimes[measureType] = data[i].time;
+          console.log(lastTimes[measureType]);
         }
-        if(previousTime.getDate() != new Date(data[i].time).getDate()) {
+        if(previousTime.getDate() != new Date(data[i].time).getDate() | (i+1==data.length)) {
           previousTime = new Date(data[i].time);
           $scope[measureType+"Labels"].push(previousTime.toLocaleDateString());
         }
@@ -49,10 +50,10 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
   $scope.createChart('airHumidity');
   $scope.createChart('groundHumidity');
   
-  $scope.loadChart = function loadChart(measureType) {
-    $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][and][0][type]='+measureType+'[where][and][1][time][gt]='+lastTimes[measureType].toJSON()).success(function(data) {
-      $scope[measureType+"Labels"] = [];
-      $scope[measureType+"Data"] = [[]];
+  /*
+  $scope.updateChart = function (measureType) {
+    $http.get('/api/plants/' + $routeParams.plantId + '/measures?filter[where][and][0][type]='+measureType+'&filter[where][and][1][time][gt]='+lastTimes[measureType].toJSON()).success(function(data) {
+      console.log(data);
       previousTime = lastTimes[measureType];
       for(var i = 0; i < data.length; i++) {
         if(data[i].time > lastTimes[measureType]) {
@@ -70,11 +71,12 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
     });
   };
   $interval(function () {
-    $scope.loadChart('temperature');
-    $scope.loadChart('luminosity');
-    $scope.loadChart('airHumidity');
-    $scope.loadChart('groundHumidity');
+    $scope.updateChart('temperature');
+    //$scope.updateChart('luminosity');
+    //$scope.updateChart('airHumidity');
+    //$scope.updateChart('groundHumidity');
   }, 10000);
+  */
 });
 
 plantissimeApp.controller('PlantCreateController', function ($scope, $http) {
