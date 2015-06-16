@@ -37,10 +37,10 @@
         	  {{sensor.itemNumber}}
           </div>
         </div>
-        <div class="required field">
+        <!--<div class="required field">
     	  	<label>Name</label>
     	  	<input type="text" name="Name" />
-        </div>
+        </div>-->
         <div class="field" ng-repeat="selectedTarget in selectedTargets track by $index">
     	  	<label>{{sensorModel.targetsType}} {{$index + 1}}</label>
           <select ng-model="selectedTarget.id">
