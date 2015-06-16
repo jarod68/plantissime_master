@@ -6,19 +6,28 @@
 	</div>
 	<div class="row">
 	  <div class="twelve wide column">
-	  	<h3 class="ui top attached header">Details</h3>
+	  	<h3 class="ui top attached header">Health status</h3>
 	    <div class="ui attached segment">
-			<ul>
-				<li>Name : {{plant.name}}</li>
-				<li>Classification : {{plant.classification.kingdom}}
-                	{{plant.classification.division}} 
-                	{{plant.classification.classe}}
-                	{{plant.classification.order}}
-                	{{plant.classification.family}}
-                	{{plant.classification.genus}}
-                	{{plant.classification.specie}}</li>
-			</ul>
-		</div>
+				<ul>
+					<li>Last watering : {{lastWateringEvent.time | date:'medium'}}</li>
+				</ul>
+			</div>
+	  </div>
+	  <div class="four wide column">
+	  	<h3 class="ui top attached header">Classification</h3>
+	    <div class="ui attached segment">
+				<table style="width:100%;">
+					<col style="width:30%;" />
+					<col style="width:70%;" />
+					<tr><th>Kingdom</th><td>{{plant.classification.kingdom}}</td></tr>
+	        <tr><th>Division</th><td>{{plant.classification.division}}</td></tr>
+	        <tr><th>Classe</th><td>{{plant.classification.classe}}</td></tr>
+	        <tr><th>Order</th><td>{{plant.classification.order}}</td></tr>
+	        <tr><th>Family</th><td>{{plant.classification.family}}</td></tr>
+	        <tr><th>Genus</th><td>{{plant.classification.genus}}</td></tr>
+	        <tr><th>Specie</th><td>{{plant.classification.specie}}</td></tr>
+				</table>
+			</div>
 	  </div>
 	</div>
 	<div class="row">

@@ -15,6 +15,10 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
   $http.get('/api/plants/' + $routeParams.plantId + '?filter[include]=classification').success(function(data) {
     $scope.plant = data;
   });
+  $http.get('/api/plants/' + $routeParams.plantId + '/events?filter[where][type]=watering&filter[order]=time DESC&filter[limit]=1')
+    .success(function(data) {
+      $scope.lastWateringEvent = data[0];
+  });
   
   var lastTimes = [];
   var previousTime;
@@ -29,7 +33,6 @@ plantissimeApp.controller('PlantDetailController', function ($scope, $http, $rou
       for(var i = 0; i < data.length; i++) {
         if(data[i].time > lastTimes[measureType]) {
           lastTimes[measureType] = data[i].time;
-          console.log(lastTimes[measureType]);
         }
         if(previousTime.getDate() != new Date(data[i].time).getDate() | (i+1==data.length)) {
           previousTime = new Date(data[i].time);
