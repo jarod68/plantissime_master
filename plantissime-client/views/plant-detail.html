@@ -6,41 +6,50 @@
 	</div>
 	<div class="row">
 	  <div class="twelve wide column">
-	  	<h3 class="ui top attached header">Details</h3>
+	  	<h3 class="ui top attached header">Health status</h3>
 	    <div class="ui attached segment">
-			<ul>
-				<li>Name : {{plant.name}}</li>
-				<li>Classification : {{plant.classification.kingdom}}
-                	{{plant.classification.division}} 
-                	{{plant.classification.classe}}
-                	{{plant.classification.order}}
-                	{{plant.classification.family}}
-                	{{plant.classification.genus}}
-                	{{plant.classification.specie}}</li>
-			</ul>
-		</div>
+				<ul>
+					<li>Last watering : {{lastWateringEvent.time | date:'medium'}}</li>
+				</ul>
+			</div>
+	  </div>
+	  <div class="four wide column">
+	  	<h3 class="ui top attached header">Classification</h3>
+	    <div class="ui attached segment">
+				<table style="width:100%;">
+					<col style="width:30%;" />
+					<col style="width:70%;" />
+					<tr><th>Kingdom</th><td>{{plant.classification.kingdom}}</td></tr>
+	        <tr><th>Division</th><td>{{plant.classification.division}}</td></tr>
+	        <tr><th>Classe</th><td>{{plant.classification.classe}}</td></tr>
+	        <tr><th>Order</th><td>{{plant.classification.order}}</td></tr>
+	        <tr><th>Family</th><td>{{plant.classification.family}}</td></tr>
+	        <tr><th>Genus</th><td>{{plant.classification.genus}}</td></tr>
+	        <tr><th>Specie</th><td>{{plant.classification.specie}}</td></tr>
+				</table>
+			</div>
 	  </div>
 	</div>
 	<div class="row">
 	  <div class="height wide column">
 	  	<h3 class="ui top attached header">Temperature</h3>
 	    <div class="ui bottom attached segment">
-		  <canvas id="line1" class="chart chart-line" 
+		  <canvas id="temperatureLine" class="chart chart-line" 
 			  data="temperatureData" 
 			  labels="temperatureLabels" 
 			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2 }" 
+			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
 			  series="temperatureSeries" />
 	    </div>
 	  </div>
 	  <div class="height wide column">
 	  	<h3 class="ui top attached header">Luminosity</h3>
 	    <div class="ui bottom attached segment">
-		  <canvas id="line2" class="chart chart-line" 
+		  <canvas id="luminosityLine" class="chart chart-line" 
 			  data="luminosityData" 
 			  labels="luminosityLabels" 
 			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2 }" 
+			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
 			  series="luminositySeries"
 			   />
 		</div>
@@ -50,22 +59,22 @@
 	  <div class="height wide column">
 	  	<h3 class="ui top attached header">Air humidity</h3>
 	    <div class="ui bottom attached segment">
-		  <canvas id="line3" class="chart chart-line" 
+		  <canvas id="airHumidityLine" class="chart chart-line" 
 			  data="airHumidityData" 
 			  labels="airHumidityLabels" 
 			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2 }" 
+			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
 			  series="airHumiditySeries" />
 		</div>
 	  </div>
 	  <div class="height wide column">
 	  	<h3 class="ui top attached header">Ground humidity</h3>
 	    <div class="ui bottom attached segment">
-		  <canvas id="line4" class="chart chart-line" 
+		  <canvas id="groundHumidityLine" class="chart chart-line" 
 			  data="groundHumidityData" 
 			  labels="groundHumidityLabels" 
 			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2 }" 
+			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
 			  series="groundHumiditySeries" />
 		</div>
 	  </div>
