@@ -8,7 +8,10 @@
         <div class="two fields">
           <div class="required field">
         	  <label>Model</label>
-        	  <input type="text" name="modelNumber" ng-model="sensor.modelNumber" />
+        	  <!--<input type="text" name="modelNumber" ng-model="sensor.modelNumber" />-->
+            <select name="modelNumber" ng-model="sensor.modelNumber">
+              <option ng-repeat="model in sensorModels" value="{{model.modelNumber}}">{{model.modelNumber}}</option>
+            </select>
           </div>
           <div class="required field">
         	  <label>Item</label>
