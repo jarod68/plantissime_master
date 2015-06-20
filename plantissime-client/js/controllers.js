@@ -115,7 +115,15 @@ plantissimeApp.controller('SensorCreateController', function ($scope, $http) {
   $scope.sensorCreateStep1 = function() {
     $scope.sensor = null;
     $scope.sensorModel = null;
-    $('#SensorCreateStep1').modal('show');
+    $http.get('/api/sensormodels').
+      success(function(data) {
+        $scope.sensorModels = data;
+        $('#SensorCreateStep1').modal('show');
+      }).
+      error(function(data, status, headers, config) {
+        $scope.error = data.error;
+        $('#SensorCreateError').modal('show');
+      });
   };
   
   // Step 2 : Get specific sensor data
