@@ -3,6 +3,7 @@ var plantissimeApp = angular.module('PlantissimeApp', [
 	'PlantissimeControllers'
 ]);
 
+var plantissimeControllers = angular.module('PlantissimeControllers', ["chart.js"]);
 
 plantissimeApp.config(['$routeProvider',
   function($routeProvider) {
