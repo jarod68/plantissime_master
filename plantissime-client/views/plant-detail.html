@@ -31,54 +31,26 @@
 	  </div>
 	</div>
 	<div class="row">
-	  <div class="height wide column">
-	  	<h3 class="ui top attached header">Temperature</h3>
-	    <div class="ui bottom attached segment">
-		  <canvas id="temperatureLine" class="chart chart-line" 
-			  data="temperatureData" 
-			  labels="temperatureLabels" 
-			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
-			  series="temperatureSeries" />
-	    </div>
+	  <div class="sixteen wide column">
+			<div class="ui top attached tabular menu">
+			  <a class="item" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
+			  <a class="item" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
+			  <a class="item" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
+			  <a class="item" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
+			</div>
+	    <div class="ui bottom attached tab segment active" data-tab="groundHumidity">
+			  <plant-chart type="chart" plant="plant.id" period="'week'" />
+			</div>
+	    <!--<div class="ui bottom attached tab segment" data-tab="airHumidity">
+			  <plant-chart type="'airHumidity'" plant="plant.id" period="'week'" />
+			</div>
+	    <div class="ui bottom attached tab segment" data-tab="luminosity">
+			  <plant-chart type="'luminosity'" plant="plant.id" period="'week'" />
+			</div>
+	    <div class="ui bottom attached tab segment" data-tab="temperature">
+			  <plant-chart type="'temperature'" plant="plant.id" period="'week'" />
+			</div>-->
 	  </div>
-	  <div class="height wide column">
-	  	<h3 class="ui top attached header">Luminosity</h3>
-	    <div class="ui bottom attached segment">
-		  <canvas id="luminosityLine" class="chart chart-line" 
-			  data="luminosityData" 
-			  labels="luminosityLabels" 
-			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
-			  series="luminositySeries"
-			   />
-		</div>
-	  </div>
-	</div>
-	<div class="row">
-	  <div class="height wide column">
-	  	<h3 class="ui top attached header">Air humidity</h3>
-	    <div class="ui bottom attached segment">
-		  <canvas id="airHumidityLine" class="chart chart-line" 
-			  data="airHumidityData" 
-			  labels="airHumidityLabels" 
-			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
-			  series="airHumiditySeries" />
-		</div>
-	  </div>
-	  <div class="height wide column">
-	  	<h3 class="ui top attached header">Ground humidity</h3>
-	    <div class="ui bottom attached segment">
-		  <canvas id="groundHumidityLine" class="chart chart-line" 
-			  data="groundHumidityData" 
-			  labels="groundHumidityLabels" 
-			  legend="false" 
-			  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
-			  series="groundHumiditySeries" />
-		</div>
-	  </div>
-	  	  
 	</div>
 </div>
 	

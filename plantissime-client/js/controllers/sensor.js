@@ -1,18 +1,27 @@
 // Sensors List
-plantissimeApp.controller('SensorsController', function ($scope, $http) {
+planti.controllers.controller('SensorsController', function ($scope, $http) {
   
   $http.get('/api/sensors?filter[include]=targets').success(function(data) {
     $scope.sensors = data;
   });
   
+  $scope.sensorDelete = function(sensor) {
+    $http.delete('/api/sensors/'+sensor.id).success(function(data) {
+      $scope.sensors.splice($scope.sensors.indexOf(sensor),  1);
+      console.log('Sensor ' + sensor.id + ' deleted');
+    });
+  };
 });
 
 // Sensor Create
-plantissimeApp.controller('SensorCreateController', function ($scope, $http) {
+planti.controllers.controller('SensorCreateController', function ($scope, $http) {
+  
   // Step 1 : Get sensor model
   $scope.sensorCreateStep1 = function() {
+    // Initialize
     $scope.sensor = null;
     $scope.sensorModel = null;
+    
     $http.get('/api/sensormodels').
       success(function(data) {
         $scope.sensorModels = data;
@@ -54,7 +63,7 @@ plantissimeApp.controller('SensorCreateController', function ($scope, $http) {
     
     $http.post('/api/sensors', $scope.sensor).success(function(data) {
       $scope.sensors.push(data);
-      
+      console.log($scope.sensors);
       for(var i = 0; i < $scope.sensorModel.targetsCount; i++) {
         if($scope.selectedTargets[i].id != 0) {
           $http.put('/api/sensors/'+data.id+'/targets/rel/'+$scope.selectedTargets[i].id, {sensorId: data.id, targetId:$scope.selectedTargets[i].id});

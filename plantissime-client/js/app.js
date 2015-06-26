@@ -1,11 +1,18 @@
-var plantissimeApp = angular.module('PlantissimeApp', [
+var app = angular.module('PlantissimeApp', [
 	'ngRoute',
-	'PlantissimeControllers'
+	'planti.controllers',
+	'planti.directives',
+  'planti.services'
 ]);
 
-var plantissimeControllers = angular.module('PlantissimeControllers', ["chart.js"]);
+// Namespaces
+var planti = {};
+planti.controllers = angular.module('planti.controllers', ["chart.js"]);
+planti.directives = angular.module('planti.directives', []);
+planti.services = angular.module('planti.services', ['ngResource']);
 
-plantissimeApp.config(['$routeProvider',
+// Routing
+app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/home', {
@@ -23,6 +30,10 @@ plantissimeApp.config(['$routeProvider',
       when('/sensors', {
         templateUrl: 'views/sensor-list.html',
         controller: 'SensorsController'
+      })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsController'
       }).
       otherwise({
         redirectTo: '/home'
