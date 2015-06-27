@@ -1,14 +1,17 @@
 <div ng-controller="SensorCreateController">
-  <button class="ui button" ng-click="sensorCreateStep1()"><i class="add icon"></i>Add a sensor</button>
+  <button class="ui button" ng-click="sensorCreateStep1()"><i class="add icon"></i>Add a new device</button>
   <div id="SensorCreateStep1" class="ui modal">
     <i class="close icon"></i>
-    <div class="header">Add a sensor</div>
+    <div class="header">Add a new device</div>
     <div class="content">
       <div class="ui form">
         <div class="two fields">
           <div class="required field">
         	  <label>Model</label>
-        	  <input type="text" name="modelNumber" ng-model="sensor.modelNumber" />
+        	  <!--<input type="text" name="modelNumber" ng-model="sensor.modelNumber" />-->
+            <select name="modelNumber" ng-model="sensor.modelNumber">
+              <option ng-repeat="model in sensorModels" value="{{model.modelNumber}}">{{model.modelNumber}}</option>
+            </select>
           </div>
           <div class="required field">
         	  <label>Item</label>
@@ -24,7 +27,7 @@
   
   <div id="SensorCreateStep2" class="ui modal">
     <i class="close icon"></i>
-    <div class="header">Add a sensor</div>
+    <div class="header">Add a new device</div>
     <div class="content">
       <div class="ui form">
         <div class="two fields">
@@ -42,11 +45,18 @@
     	  	<input type="text" name="Name" />
         </div>-->
         <div class="field" ng-repeat="selectedTarget in selectedTargets track by $index">
-    	  	<label>{{sensorModel.targetsType}} {{$index + 1}}</label>
-          <select ng-model="selectedTarget.id">
-            <option value="0">-- Choose --</option>
-            <option ng-repeat="target in targets" value="{{target.id}}">{{target.name}}</option>
-          </select>
+        	<label>{{sensorModel.targetsType}} {{$index + 1}}</label>
+          <div class="two fields">
+            <div class="thirteen wide field">
+              <select ng-model="selectedTarget.id">
+                <option value="0">-- Choose --</option>
+                <option ng-repeat="target in targets" value="{{target.id}}">{{target.name}}</option>
+              </select>
+            </div>
+            <div class="three wide field">
+              <plant-create label="'New'" callback="sensorCreateStep2" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

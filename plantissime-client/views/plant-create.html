@@ -1,5 +1,5 @@
 <div ng-controller="PlantCreateController">
-  <button class="ui button" ng-click="openPlantCreate()"><i class="add icon"></i>Add a plant</button>
+  <button class="ui button" ng-click="openPlantCreate()"><i class="add icon"></i>{{buttonLabel}}</button>
   <div id="PlantCreateForm" class="ui modal">
     <i class="close icon"></i>
     <div class="header">Add a plant</div>
@@ -28,7 +28,7 @@
       </form>
     </div>
     <div class="actions">
-      <button type="submit" class="ui right labeled icon positive button" ng-click="confirmPlantCreate(plant)">
+      <button type="submit" class="ui right labeled icon positive button" ng-click="confirmPlantCreate(plant); callback();">
         Confirm
         <i class="checkmark icon"></i>
       </button>

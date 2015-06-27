@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title>Plantissime</title>
   <link rel="stylesheet" href="semantic/dist/semantic.min.css">
-  <link rel="stylesheet" href="css/app.css">
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="semantic/dist/semantic.min.js"></script>
     
-    
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/style.js"></script>
     
   <!-- Angular -->
   <script src="node_modules/angular/angular.js"></script>
@@ -22,12 +22,23 @@
   
   
   <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
+  
+  <!-- Controllers -->
+  <script src="js/controllers/home.js"></script>
+  <script src="js/controllers/plant.js"></script>
+  <script src="js/controllers/sensor.js"></script>
+  <script src="js/controllers/settings.js"></script>
+  
+  <!-- Directives -->
+  <script src="js/directives/plantCreate.js"></script>
+  <script src="js/directives/plantChart.js"></script>
+  
+  
+  <script src="js/services/services.js"></script>
 </head>
 <body class="full height">
-  <div class="ui grid">
-    <div class="one wide column">
+  <div>
+    <div id="part-menu">
       <div class="ui vertical inverted labeled icon menu fixed" style="min-height:100%;">
         <div class="item">
           <b>Plantissime</b>
@@ -40,21 +51,25 @@
           <i class="leaf icon inverted"></i>
           <small>Plants</small>
         </a>
-        <a class="item" href="#/sensors">
+        <!--<a class="item" href="#/sensors">
           <i class="eyedropper icon"></i>
           <small>Sensors</small>
-        </a>
+        </a>-->
         <!--<a class="item" href="#/weather">
           <i class="cloud icon"></i>
           <small>Weather</small>
+        </a>-->        
+				<!--<a class="item" ng-click="sensorCreateStep1()">
+          <i class="add icon"></i>
+          <small>Add device</small>
         </a>-->
-        <!--<a class="item">
+        <a class="item" href="#/settings">
           <i class="settings icon"></i>
           <small>Settings</small>
-        </a>-->
+        </a>
       </div>
     </div>
-    <div class="fifteen wide column">
+    <div id="part-content">
       <div ng-view></div>
     </div>
   </div>

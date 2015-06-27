@@ -16,6 +16,10 @@
     },
     "targetIndex": {
       "type": "number"
+    },
+    "varName": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],
