@@ -66,10 +66,6 @@ planti.directives.directive('sensorCreate', function($http) {
           }
         });
       };
-      
-      $http.get('/api/plants').success(function(data) {
-        $scope.plants = data;
-      });
   }
   
   return {
