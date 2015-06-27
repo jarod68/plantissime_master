@@ -1,5 +1,5 @@
-<div ng-controller="PlantCreateController">
-  <button class="ui button" ng-click="openPlantCreate()"><i class="add icon"></i>{{buttonLabel}}</button>
+<div>
+  <button class="ui button" ng-click="openModal();"><i class="add icon"></i>{{buttonLabel}}</button>
   <div id="PlantCreateForm" class="ui modal">
     <i class="close icon"></i>
     <div class="header">Add a plant</div>
@@ -14,11 +14,11 @@
           <div>
             <select name="specie" ng-model="plant.classificationId">
               <option ng-repeat="plantClasse in plantClasses" value="{{plantClasse.id}}">
-                {{plantClasse.kingdom}} 
-                {{plantClasse.division}} 
+                {{plantClasse.kingdom}}
+                {{plantClasse.division}}
                 {{plantClasse.classe}}
                 {{plantClasse.order}}
-                {{plantClasse.family}}
+                {{plantClasse.family}} 
                 {{plantClasse.genus}}
                 {{plantClasse.specie}}
               </option>
@@ -28,11 +28,11 @@
       </form>
     </div>
     <div class="actions">
-      <button type="submit" class="ui right labeled icon positive button" ng-click="confirmPlantCreate(plant); callback();">
+      <button type="submit" class="ui right labeled icon positive button" ng-click="confirmCreate(plant);">
         Confirm
         <i class="checkmark icon"></i>
       </button>
-      <button type="submit" class="ui black deny button">Cancel</button>
+      <button type="submit" class="ui black deny button" ng-click="cancelCreate();">Cancel</button>
     </div>
   </div>
   

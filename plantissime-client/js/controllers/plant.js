@@ -2,6 +2,12 @@ planti.controllers.controller('PlantsController', function ($scope, $http) {
   $http.get('/api/plants').success(function(data) {
     $scope.plants = data;
   });
+  
+  $scope.onPlantCreated = function(plant) {
+    if(plant != null) {
+      $scope.plants.push(plant);
+    }
+  };
 });
 
 planti.controllers.controller('PlantDetailController', function ($scope, $http, $routeParams, $interval) {
@@ -21,20 +27,3 @@ planti.controllers.controller('PlantDetailController', function ($scope, $http, 
 
 });
 
-planti.controllers.controller('PlantCreateController', function ($scope, $http) {
-  $scope.openPlantCreate = function() {
-    $http.get('/api/plantclassifications').success(function(data) {
-      $scope.plantClasses = data;
-      $('#PlantCreateForm').modal('show');
-    });
-  };
-  
-  $scope.confirmPlantCreate = function(plant) {
-    plant.type = "Plant";
-    $http.post('/api/plants', plant).success(function(data) {
-      $scope.plants.push(data);
-      $('#PlantCreateForm').modal('hide');
-      //$('#PlantCreateConfirmation').modal('show');
-    });
-  };
-});
