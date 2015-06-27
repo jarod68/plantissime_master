@@ -1,0 +1,30 @@
+<div ng-controller="SpeciesController">
+	
+	<div class="ui inverted dimmer" ng-class="{active: loading}">
+	  <div class="ui text loader">Loading</div>
+	</div>
+	
+  <table class="ui seven column very basic table">
+		<thead>
+			<tr>
+				<th>Kingdom</th>
+				<th>Division</th>
+				<th>Classe</th>
+				<th>Order</th>
+				<th>Family</th>
+				<th>Genus</th>
+				<th>Specie</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="classification in classifications">
+			<td>{{classification.kingdom}}</td>
+			<td>{{classification.division}}</td>
+			<td>{{classification.classe}}</td>
+			<td>{{classification.order}}</td>
+			<td>{{classification.family}}</td>
+			<td>{{classification.genus}}</td>
+			<td>{{classification.specie}}</td>
+		</tr>
+	</table>
+	
+</div>

@@ -1,37 +1,29 @@
-<div class="ui vertical padded centered grid" ng-controller="SensorsController">
-	<div class="row">
-		<div class="column">
-			<sensor-create label="'Add a new device'" callback="onSensorCreated" />
-		</div>
+<div ng-controller="SensorsController">
+	<div class="ui inverted dimmer" ng-class="{active: loading}">
+	  <div class="ui text loader">Loading</div>
 	</div>
-	<!--<div class="row">
-	  <div class="column">
-	    <h3 class="ui dividing header">Devices list</h3>
-	  </div>
-	</div>-->
-	<div class="row">
-	  <div class="column">
-	    <table class="ui four column very basic table" style="width:90%;">
-				<thead>
-					<tr>
-						<th>Model number</th>
-						<th>Item number</th>
-						<th>Targets</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tr ng-repeat="sensor in sensors">
-					<td>{{sensor.modelNumber}}</td>
-					<td>{{sensor.itemNumber}}</td>
-					<td>
-						<div ng-repeat="target in sensor.targets"><i class="leaf icon" /> {{target.name}}</td>
-					<td>
-				  	<!--<button class="ui button" ng-click="sensorEdit(sensor)"><i class="edit icon"></i></button>-->
-				  	<button class="ui button" ng-click="sensorDelete(sensor)"><i class="delete icon"></i></button>
-					</td>
-				</tr>
-			</table>
-	  </div>
-	</div>
-</div>
 
+	<sensor-create label="'Add a new device'" callback="onSensorCreated"></sensor-create>
+
+	<table class="ui four column very basic table">
+		<thead>
+			<tr>
+				<th>Model number</th>
+				<th>Item number</th>
+				<th>Targets</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tr ng-repeat="sensor in sensors">
+			<td>{{sensor.modelNumber}}</td>
+			<td>{{sensor.itemNumber}}</td>
+			<td>
+				<div ng-repeat="target in sensor.targets"><i class="leaf icon" /> {{target.name}}</td>
+			<td>
+		  	<!--<button class="ui button" ng-click="sensorEdit(sensor)"><i class="edit icon"></i></button>-->
+		  	<button class="ui button" ng-click="sensorDelete(sensor)"><i class="delete icon"></i></button>
+			</td>
+		</tr>
+	</table>
+
+</div>
