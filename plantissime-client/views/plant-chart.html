@@ -2,9 +2,14 @@
   <a class="item" ng-class="{active: period=='week'}" ng-click="changePeriod('week')">Last week</a>
   <a class="item" ng-class="{active: period=='month'}" ng-click="changePeriod('month')">Last month</a>
 </div>
-<canvas id="{{key}}" class="chart chart-line" height="60%"
+<div class="ui inverted dimmer" ng-class="{active: loading}">
+  <div class="ui text loader">Loading</div>
+</div>
+<div class="ui center aligned header" ng-if="isEmpty">No data</div>
+<canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="60%"
   data="chartData" 
   labels="chartLabels" 
   legend="false" 
   options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
   series="chartSeries" />
+

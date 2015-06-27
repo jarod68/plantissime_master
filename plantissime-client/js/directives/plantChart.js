@@ -8,6 +8,7 @@ planti.directives.directive('plantChart', function($http) {
     }
     
     scope.$watchGroup(['plantId', 'measureType', 'period'], function () {
+      scope.loading = true;
       if(scope.plantId != null) {
         scope.key = 'chart' + scope.plantId + '' + scope.measureType + '' + scope.period;
         console.log(scope.key);
@@ -25,14 +26,17 @@ planti.directives.directive('plantChart', function($http) {
             break;
         }
         
+        
         $http.get('/api/plants/' + scope.plantId + '/measures?filter[where][and][0][type]=' + scope.measureType + '&filter[where][and][1][time][gt]=' + date.toJSON()).success(function(data) {
           scope.chartLabels = [];
           scope.chartSeries = [scope.measureType];
           scope.chartData = [[]];
           var previousTime = new Date(0);
-          
+          scope.isEmpty = true;
           // For each measures
           for(var i = 0; i < data.length; i++) {
+            
+            scope.isEmpty = false;
             
             // If new day
             if(previousTime.getDate() != new Date(data[i].time).getDate() | (i+1==data.length)) {
@@ -53,6 +57,8 @@ planti.directives.directive('plantChart', function($http) {
           scope.onClick = function (points, evt) {
             console.log(points, evt);
           };
+          
+          scope.loading = false;
         });  
       }  
     });
