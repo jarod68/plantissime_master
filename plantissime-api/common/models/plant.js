@@ -16,7 +16,7 @@ module.exports = function(Plant) {
       this.measures.findOne({ where: { type: measureType }, order: 'time DESC' }, function(err, lastMeasure) {
         console.log("lastMeasure:");
         console.log(lastMeasure);
-        if (value > lastMeasure.value) {
+        if (lastMeasure != null & value > lastMeasure.value) {
           Plant.app.models.Event.create({ time: measureToAdd.time, type: 'watering', source: 'increasedHumidity', targetId: targetId }, function(err, data) {
               console.log('-- Event created --');
               console.log(err);
