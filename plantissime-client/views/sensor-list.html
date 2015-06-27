@@ -1,7 +1,7 @@
 <div class="ui vertical padded centered grid" ng-controller="SensorsController">
 	<div class="row">
 		<div class="column">
-			<div ng-include="'views/sensor-create.html'"></div>
+			<sensor-create label="'Add a new device'" callback="onSensorCreated" />
 		</div>
 	</div>
 	<!--<div class="row">
