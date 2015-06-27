@@ -29,12 +29,12 @@
 	<div class="row">
 	  <div class="sixteen wide column">
 			<div class="ui top attached tabular menu">
-			  <a class="item" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
-			  <a class="item" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
-			  <a class="item" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
-			  <a class="item" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
+			  <a class="item orange" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
+			  <a class="item blue" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
+			  <a class="item yellow" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
+			  <a class="item teal" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
 			</div>
-	    <div class="ui bottom attached tab segment active" data-tab="groundHumidity">
+	    <div class="ui bottom attached tab segment active">
 			  <plant-chart type="chart" plant="plant.id" period="'week'" />
 			</div>
 	    <!--<div class="ui bottom attached tab segment" data-tab="airHumidity">
