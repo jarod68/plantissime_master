@@ -9,7 +9,17 @@
 <canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="60%"
   data="chartData" 
   labels="chartLabels" 
-  legend="false" 
-  options="{ scaleBeginAtZero: true, pointDotRadius: 2, pointHitDetectionRadius:2, animation: false }" 
-  series="chartSeries" />
+  legend="true" 
+  options="{  scaleBeginAtZero: true, 
+              pointDotRadius: 2, 
+              pointHitDetectionRadius:2, 
+              animation: false, 
+              datasetFill: false,
+              tooltipTemplate: 'ff<%if (label){%><%=label%>: <%}%><%= value %>',
+              multiTooltipTemplate: '<%=name %> : <%= value %>',
+              customTooltips: chartTooltips }"
+  series="chartSeries"
+  colours="chartColours" />
+  
+ <div id="chart-tooltip"></div>
 

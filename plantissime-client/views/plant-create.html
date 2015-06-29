@@ -14,13 +14,8 @@
           <div>
             <select name="specie" ng-model="plant.classificationId">
               <option ng-repeat="plantClasse in plantClasses" value="{{plantClasse.id}}">
-                {{plantClasse.kingdom}}
-                {{plantClasse.division}}
-                {{plantClasse.classe}}
-                {{plantClasse.order}}
-                {{plantClasse.family}} 
-                {{plantClasse.genus}}
-                {{plantClasse.specie}}
+                {{plantClasse.commonName}}
+                {{plantClasse.binomialName}}
               </option>
             </select>
           </div>

@@ -58,5 +58,13 @@
   "Event": {
     "dataSource": "mysqlDB",
     "public": false
+  },
+  "PlantRecommendation": {
+    "dataSource": "staticDB",
+    "public": false
+  },
+  "ParamModel": {
+    "dataSource": null,
+    "public": false
   }
 }

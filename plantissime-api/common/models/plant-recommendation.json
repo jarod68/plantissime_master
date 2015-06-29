@@ -1,26 +1,22 @@
 {
-  "name": "SensorModel",
+  "name": "PlantRecommendation",
   "base": "ParamModel",
-  "idInjection": false,
+  "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "modelNumber": {
+    "measureType": {
       "type": "string",
       "required": true
     },
-    "probes": {
-      "type": [
-        "Probe"
-      ]
+    "type": {
+      "type": "string",
+      "required": true,
+      "doc": "Possibles values: 'min', 'max', 'average'"
     },
-    "targetsCount": {
+    "value": {
       "type": "number",
-      "required": true
-    },
-    "targetsType": {
-      "type": "string",
       "required": true
     }
   },

@@ -1,35 +1,33 @@
 {
   "name": "PlantClassification",
-  "base": "PersistedModel",
+  "base": "ParamModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "kingdom": {
-      "type": "string"
+    "commonName": {
+      "type": "string",
+      "required": true
     },
-    "division": {
-      "type": "string"
+    "binomialName": {
+      "type": "string",
+      "required": true
     },
-    "classe": {
-      "type": "string"
-    },
-    "order": {
-      "type": "string"
-    },
-    "family": {
-      "type": "string"
-    },
-    "genus": {
-      "type": "string"
-    },
-    "specie": {
-      "type": "string"
+    "tags": {
+      "type": [
+        "string"
+      ]
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "recommendations": {
+      "type": "embedsMany",
+      "model": "PlantRecommendation",
+      "property": "recommendationsList"
+    }
+  },
   "acls": [],
   "methods": []
 }
