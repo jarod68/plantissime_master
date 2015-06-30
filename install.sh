@@ -13,7 +13,7 @@ blue=`tput setaf 6`
 reset=`tput sgr0`
 
 # Install MySQL if not installed
-if ls /usr/bin/mysql 2>/dev/null
+if mysqld -V 2>/dev/null
 then
 	echo " - MySQL : ${green}installed${reset}"
 else
@@ -26,7 +26,7 @@ else
 fi
 
 # Install Git if not installed
-if ls /usr/bin/git 2>/dev/null
+if git --version 2>/dev/null
 then
 	echo " - git : ${green}installed${reset}"
 else
@@ -37,7 +37,7 @@ else
 fi
 
 # Install wget if not installed
-if ls /usr/bin/wget 2>/dev/null
+if wget --version 2>/dev/null
 then
 	echo " - wget : ${green}installed${reset}"
 else
@@ -48,7 +48,7 @@ else
 fi
 
 # Install nodejs if not present
-if ls /usr/local/bin/node
+if node --version 2>/dev/null
 then
 	echo " - node.js : ${green}installed${reset}"
 else
@@ -62,9 +62,25 @@ else
 fi
 
 # Install gulp
-echo " - gulp : ${blue}installation . . .${reset}"
-npm install -g gulp
-echo "${blue}   => gulp installed${reset}"
+if gulp --version 2>/dev/null
+then
+	echo " - gulp : ${green}installed${reset}"
+else
+	echo " - gulp : ${blue}installation . . .${reset}"
+	npm install -g gulp
+	echo "${blue}   => gulp installed${reset}"
+fi
+
+# Install forever
+if forever --version 2>/dev/null
+then
+	echo " - forever : ${green}installed${reset}"
+else
+	echo " - forever : ${blue}installation . . .${reset}"
+	npm install -g forever
+	echo "${blue}   => forever installed${reset}"
+fi
+	
 
 
 # Install plantissime-api
