@@ -1,20 +1,17 @@
 
 <h1 class="ui dividing header">Plants</h1>
 
-
 <plant-create label="'New plant'" callback="onPlantCreated"></plant-create>
 
-
-
-  <div class="ui divided items">
-		<div class="item" ng-repeat="plant in plants">
-			<div class="image">
-				<img />
-			</div>
-			<div class="content">
-				<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
-			</div>
+<div class="ui divided items">
+	<div class="item" ng-repeat="plant in plants">
+		<div class="image">
+			<img />
+		</div>
+		<div class="content">
+			<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
 		</div>
 	</div>
+</div>
 
 

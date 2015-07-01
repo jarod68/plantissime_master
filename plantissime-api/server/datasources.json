@@ -16,5 +16,11 @@
     "name": "staticDB",
     "connector": "memory",
     "file": "static.json"
+  },
+  "staticStorage": {
+    "name": "staticStorage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./static/storage"
   }
 }
