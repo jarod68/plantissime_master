@@ -6,10 +6,10 @@
   <div class="ui text loader">Loading</div>
 </div>
 <div class="ui center aligned header" ng-if="isEmpty">No data</div>
-<canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="60%"
+<canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="100%"
   data="chartData" 
   labels="chartLabels" 
-  legend="true" 
+  legend="false" 
   options="{  scaleBeginAtZero: true, 
               pointDotRadius: 2, 
               pointHitDetectionRadius:2, 
