@@ -21,11 +21,6 @@
       "type": "hasMany",
       "model": "Measure",
       "foreignKey": "targetId"
-    },
-    "events": {
-      "type": "hasMany",
-      "model": "Event",
-      "foreignKey": "targetId"
     }
   },
   "acls": [],

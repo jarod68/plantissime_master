@@ -10,16 +10,29 @@
       "type": "date",
       "required": true
     },
-    "type": {
+    "code": {
       "type": "string",
       "required": true
     },
     "source": {
       "type": "string"
+    },
+    "level": {
+      "type": "number",
+      "doc": "1: information, 2: alert"
+    },
+    "expiredAt": {
+      "type": "date"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "target": {
+      "type": "belongsTo",
+      "model": "Plant",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": []
 }

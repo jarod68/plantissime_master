@@ -14,7 +14,7 @@ planti.controllers.controller('PlantDetailController', function ($scope, $http, 
   $http.get('/api/plants/' + $routeParams.plantId + '?filter[include]=classification').success(function(data) {
     $scope.plant = data;
   });
-  $http.get('/api/plants/' + $routeParams.plantId + '/events?filter[where][type]=watering&filter[order]=time DESC&filter[limit]=1')
+  $http.get('/api/events?filter[where][and][0][targetId]=' + $routeParams.plantId + '&filter[and][1][code]=watering&filter[order]=time DESC&filter[limit]=1')
     .success(function(data) {
       $scope.lastWateringEvent = data[0];
   });
