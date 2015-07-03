@@ -1,6 +1,6 @@
 {
-	"nodeID":"P01V01",
-	"serial":"M201506I0001",
+	"nodeID":"M201506I0001",
+	"serial":"P01V01",
 	"lum":14.0,
 	"hum":37,
 	"temp":21,

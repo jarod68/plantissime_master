@@ -1,6 +1,6 @@
 {
   "name": "SensorModel",
-  "base": "PersistedModel",
+  "base": "ParamModel",
   "idInjection": false,
   "options": {
     "validateUpsert": true

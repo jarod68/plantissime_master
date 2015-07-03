@@ -1,56 +1,37 @@
-<div class="ui vertical padded grid">
-	<div class="row">
-	  <div class="column">
-	    <h1 class="ui dividing header">{{plant.name}} <small>informations</small></h1>
-	  </div>
-	</div>
-	<div class="row">
-	  <div class="twelve wide column">
-	  	<h3 class="ui top attached header">Health status</h3>
-	    <div class="ui attached segment">
-				<ul>
-					<li>Last watering : {{lastWateringEvent.time | date:'medium'}}</li>
-				</ul>
+<h1 class="ui dividing header">{{plant.name}} <small>informations</small></h1>
+<div class="ui two column vertical padded grid">
+  <div class="twelve wide column">
+  	<h3 class="ui top attached header">Health status</h3>
+    <div class="ui bottom attached segment">
+			<ul>
+				<li>Last watering : {{lastWateringEvent.time | date:'medium'}}</li>
+			</ul>
+		</div>
+		<div class="ui top attached tabular menu">
+		  <a class="item orange" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
+		  <a class="item blue" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
+		  <a class="item yellow" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
+		  <a class="item teal" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
+		</div>
+    <div class="ui bottom attached tab segment active">
+		  <plant-chart type="chart" plant="plant.id" recommendations="plant.classification.recommendationsList" period="'week'" />
+		</div>
+  </div>
+  <div class="four wide column">
+    <div class="ui green card">
+			<div class="image">
+				<img src="http://localhost:3000/api/Pictures/PlantClassification/download/{{plant.classification.id}}.jpg" />
 			</div>
-	  </div>
-	  <div class="four wide column">
-	  	<h3 class="ui top attached header">Classification</h3>
-	    <div class="ui attached segment">
-				<table style="width:100%;">
-					<col style="width:30%;" />
-					<col style="width:70%;" />
-					<tr><th>Kingdom</th><td>{{plant.classification.kingdom}}</td></tr>
-	        <tr><th>Division</th><td>{{plant.classification.division}}</td></tr>
-	        <tr><th>Classe</th><td>{{plant.classification.classe}}</td></tr>
-	        <tr><th>Order</th><td>{{plant.classification.order}}</td></tr>
-	        <tr><th>Family</th><td>{{plant.classification.family}}</td></tr>
-	        <tr><th>Genus</th><td>{{plant.classification.genus}}</td></tr>
-	        <tr><th>Specie</th><td>{{plant.classification.specie}}</td></tr>
-				</table>
+			<div class="content">
+				<h4 class="ui horizontal divider header">Classification</h4>
+				<p />
+				<p class="center aligned">{{plant.classification.commonName}}</p>
+				<p class="center aligned">{{plant.classification.binomialName}}</p>
+				<h4 class="ui horizontal divider header">Categories</h4>
+				<p />
+				<div class="ui labels"><span class="ui label" ng-repeat="tag in plant.classification.tags">{{tag}}</span></div>
 			</div>
-	  </div>
-	</div>
-	<div class="row">
-	  <div class="sixteen wide column">
-			<div class="ui top attached tabular menu">
-			  <a class="item" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
-			  <a class="item" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
-			  <a class="item" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
-			  <a class="item" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
-			</div>
-	    <div class="ui bottom attached tab segment active" data-tab="groundHumidity">
-			  <plant-chart type="chart" plant="plant.id" period="'week'" />
-			</div>
-	    <!--<div class="ui bottom attached tab segment" data-tab="airHumidity">
-			  <plant-chart type="'airHumidity'" plant="plant.id" period="'week'" />
-			</div>
-	    <div class="ui bottom attached tab segment" data-tab="luminosity">
-			  <plant-chart type="'luminosity'" plant="plant.id" period="'week'" />
-			</div>
-	    <div class="ui bottom attached tab segment" data-tab="temperature">
-			  <plant-chart type="'temperature'" plant="plant.id" period="'week'" />
-			</div>-->
-	  </div>
-	</div>
+    </div>
+  </div>
 </div>
 	

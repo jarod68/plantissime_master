@@ -1,16 +1,14 @@
-<div class="ui vertical padded grid">
-	<div class="row">
-	  <div class="column">
-	    <h1 class="ui dividing header">Settings</h1>
-	  </div>
-	</div>
-	<div class="row">
-		<div class="ui top attached tabular menu">
-		  <div class="active item" data-tab="first">Devices</div>
-		</div>
-		<div class="ui bottom attached tab segment active" data-tab="first">
-		  <div ng-include="'views/sensor-list.html'"></div>
-		</div>
-	</div>
+<h1 class="ui header">
+	<i class="settings icon"></i>
+	<div class="content">Settings</div>
+</h1>
+
+<div class="ui top attached tabular menu">
+  <a class="item" ng-class="{active: tab=='devices'}" ng-click="goDevices();">Devices</a>
+  <a class="item" ng-class="{active: tab=='species'}" ng-click="goSpecies();">Plant classifications</a>
 </div>
+<div class="ui bottom attached tab segment active">
+  <div ng-include="view" />
+</div>
+
 

@@ -1,8 +1,8 @@
-<div ng-controller="SensorCreateController">
-  <button class="ui button" ng-click="sensorCreateStep1()"><i class="add icon"></i>Add a new device</button>
+<div>
+  <button class="ui button" ng-click="sensorCreateStep1()"><i class="add icon"></i>{{label}}</button>
   <div id="SensorCreateStep1" class="ui modal">
     <i class="close icon"></i>
-    <div class="header">Add a new device</div>
+    <div class="header">{{label}} <small>1/2</small></div>
     <div class="content">
       <div class="ui form">
         <div class="two fields">
@@ -21,13 +21,13 @@
       </div>
     </div>
     <div class="actions">
-      <button type="submit" class="ui button" ng-click="sensorCreateStep2()">Next</button>
+      <button type="submit" class="ui primary button" ng-click="sensorCreateStep2()">Next</button>
     </div>
   </div>
   
   <div id="SensorCreateStep2" class="ui modal">
     <i class="close icon"></i>
-    <div class="header">Add a new device</div>
+    <div class="header">{{label}} <small>2/2</small></div>
     <div class="content">
       <div class="ui form">
         <div class="two fields">
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="actions">
-      <button type="submit" class="ui right labeled icon positive button" ng-click="sensorCreateStep3()">Confirm</button>
+      <button type="submit" class="ui right labeled icon positive button" ng-click="sensorCreateStep3()"><i class="checkmark icon"></i>Confirm</button>
     </div>
   </div>
   

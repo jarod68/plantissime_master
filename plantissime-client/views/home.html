@@ -1,12 +1,68 @@
-<div class="ui vertical padded centered grid">
+<div class="ui grid">
 	<div class="row">
-	  <div class="column">
-	    <h1 class="ui dividing header">Home</h1>
-	  </div>
+		<div class="one wide column">
+			<i class="home huge icon" />
+		</div>
+		<div class="bottom aligned center aligned fifteen wide column">
+			<div class="ui center aligned ">
+			  <div class="ui tiny horizontal statistic">
+			    <div class="value">
+			      {{currentDate | date:'mediumTime'}}
+			    </div>
+			    <div class="label">
+			      {{currentDate | date:'mediumDate'}}
+			    </div>
+			  </div>
+			</div>
+		</div>
 	</div>
 	<div class="row">
-	  <div class="height wide column">
-	    <div class="ui message">Welcome to Plantissime</div>
-	  </div>
+		<div class="four wide column ">
+			<div class="ui red segment">
+				<div class="ui feed">
+					<h4 class="ui dividing header">Current alerts</h4>
+				  <div class="event" ng-if="alerts.length==0">
+				    <div class="label">
+				      <i class="checkmark green icon"></i>
+				    </div>
+	    			<div class="content">
+	      			<div class="summary">Everything is ok</div>
+						</div>
+					</div>
+				  <div class="event" ng-repeat="alert in alerts">
+	    			<div class="content" ng-switch on="alert.code">
+	      			<div class="summary" ng-switch-when="min-groundHumidity">
+								<a class="user" href="#/plants/{{alert.target.id}}">{{alert.target.name}}</a> need to be watered
+							</div>
+	      			<div class="summary" ng-switch-when="max-groundHumidity">
+								<a class="user" href="#/plants/{{alert.target.id}}">{{alert.target.name}}</a> has too much water
+							</div>
+	      			<div class="summary" ng-switch-default>
+								<a class="user" href="#/plants/{{alert.target.id}}">{{alert.target.name}}</a> {{alert.code}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="four wide column">
+			<div class="ui blue segment">
+				<div class="ui feed">
+					<h4 class="ui dividing header">Last events</h4>
+				  <div class="event" ng-repeat="event in events">
+	    			<div class="content" ng-switch on="event.code">
+	      			<div class="summary" ng-switch-when="watering">
+								<a class="user" href="#/plants/{{event.target.id}}">{{event.target.name}}</a> was watered
+								<div class="date">{{event.time | date:'short'}}</div>
+							</div>
+	      			<div class="summary" ng-switch-default>
+								<a class="user" href="#/plants/{{event.target.id}}">{{event.target.name}}</a> {{alert.code}}
+								<div class="date">{{event.time | date:'short'}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

@@ -1,27 +1,19 @@
-<div class="ui vertical padded centered grid">
-	<div class="row">
-	  <div class="column">
-	    <h1 class="ui dividing header">Plants</h1>
-	  </div>
-	</div>
-	<div class="row">
-		<div class="column">
-			<plant-create label="'New plant'" />
+<h1 class="ui header">
+	<i class="leaf icon"></i>
+	<div class="content">Plants</div>
+</h1>
+
+<plant-create label="'New plant'" callback="onPlantCreated"></plant-create>
+
+<div class="ui divided items">
+	<div class="item" ng-repeat="plant in plants">
+		<div class="image">
+			<img />
 		</div>
-	</div>
-	<div class="row">
-	  <div class="column">
-	    <div class="ui divided items">
-			<div class="item" ng-repeat="plant in plants">
-				<div class="image">
-      				<img />
-    			</div>
-				<div class="content">
-					<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
-				</div>
-			</div>
+		<div class="content">
+			<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
 		</div>
-	  </div>
 	</div>
 </div>
+
 

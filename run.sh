@@ -4,4 +4,7 @@
 service mysql start
 
 # Start app
-node plantissime-api
+forever start plantissime-api
+
+# Start receiving script
+forever start receive.py

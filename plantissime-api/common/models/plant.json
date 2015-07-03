@@ -14,9 +14,9 @@
   "validations": [],
   "relations": {
     "classification": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "PlantClassification",
-      "foreignKey": "id"
+      "foreignKey": ""
     }
   },
   "acls": [],

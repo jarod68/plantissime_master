@@ -1,28 +1,27 @@
 {
-  "name": "Target",
-  "base": "PersistedModel",
+  "name": "PlantRecommendation",
+  "base": "ParamModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "measureType": {
       "type": "string",
       "required": true
     },
     "type": {
       "type": "string",
+      "required": true,
+      "doc": "Possibles values: 'min', 'max', 'average'"
+    },
+    "value": {
+      "type": "number",
       "required": true
     }
   },
   "validations": [],
-  "relations": {
-    "measures": {
-      "type": "hasMany",
-      "model": "Measure",
-      "foreignKey": "targetId"
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": []
 }
