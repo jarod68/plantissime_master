@@ -62,6 +62,7 @@ else
 fi
 
 # Install gulp
+
 if gulp --version 2>/dev/null
 then
 	echo " - gulp : ${green}installed${reset}"
@@ -80,8 +81,6 @@ else
 	npm install -g forever
 	echo "${blue}   => forever installed${reset}"
 fi
-	
-
 
 # Install plantissime-api
 echo " - plantissime-api : ${blue}installation . . .${reset}"
