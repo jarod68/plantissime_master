@@ -25,7 +25,8 @@ class Color(Enum):
 port = serial.Serial("/dev/ttyAMA0",baudrate=9600, timeout=None)
 LED_GREEN_PIN = 24
 LED_RED_PIN = 25
-
+print ("Init GPIO... ")
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_RED_PIN, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(LED_GREEN_PIN, GPIO.OUT, pull_up_down=GPIO.PUD_DOWN)
@@ -71,17 +72,19 @@ def onReceive(payload):
              ledOn(Color.YELLOW)
 
 def signal_handler(signal, frame):
-        print('Exiting!')
+        print('Exiting...')
         ledOff()
         port.close()
   	sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
 
+print ("Open serial " + port.portstr + "...")
+
 port.open()
 
 ledOn(Color.RED)
-
+print ("Waiting data...")
 while True:
     rcv = readlineCR()
     onReceive(rcv)
