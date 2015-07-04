@@ -4,7 +4,7 @@ module.exports = function(Sensor) {
     console.log('----- ----- ----- -----');
     
     // Get sensor
-    Sensor.findOne({ where: { itemNumber: data.nodeID }, include: 'targets'}, function(err, sensor) {
+    Sensor.findOne({ where: { itemNumber: data.serial }, include: 'targets'}, function(err, sensor) {
       if(sensor != null) {
         console.log('Receive data from sensor M:' + sensor.modelNumber + ' I:' + sensor.itemNumber);
           
