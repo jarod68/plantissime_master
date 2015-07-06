@@ -56,6 +56,7 @@ def readlineCR():
     rv = ""
     while True:
         ch = port.read()
+#	print(str(ch))
         rv += ch
         if ch=='\r' or ch=='' or ch=='\n':
             return rv
