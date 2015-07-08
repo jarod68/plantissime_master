@@ -1,5 +1,19 @@
 module.exports = function(Sensor) {
   
+  Sensor.prototype.addMeasure = function(value, measureType) {
+    // Measure creation
+    var measureToAdd = { 
+      value: value,
+      type: measureType, 
+      time: new Date(), 
+      targetId: this.id,
+      targetType: 'Sensor'
+    };
+    Sensor.app.models.Measure.create(measureToAdd, function(err, data) {
+      console.log('-- Measure created =>', err, data);
+    });
+  };
+    
   Sensor.receive = function(data, cb) {
     console.log('----- ----- ----- -----');
     
@@ -20,8 +34,13 @@ module.exports = function(Sensor) {
                 
                 // For each probe
                 for(var probeIndex = 0; probeIndex < sensorModel.probes.length; probeIndex++) {
+                  
+                  // If local, measure added for this sensor
+                  if(sensorModel.probes[probeIndex].isLocal) {
+                    sensor.addMeasure(data[sensorModel.probes[probeIndex].varName], sensorModel.probes[probeIndex].type);
+                  }
                   // If global probe, measure created for each target
-                  if(sensorModel.probes[probeIndex].isGlobal) {
+                  else if(sensorModel.probes[probeIndex].isGlobal) {
                     // For each target of this sensore
                     for(var targetIndex = 0; targetIndex < targets.length; targetIndex++) {
                       // Add measure

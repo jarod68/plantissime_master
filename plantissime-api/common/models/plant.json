@@ -1,6 +1,6 @@
 {
   "name": "Plant",
-  "base": "Target",
+  "base": "AbstractTarget",
   "idInjection": true,
   "options": {
     "validateUpsert": true

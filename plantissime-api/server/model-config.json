@@ -43,7 +43,7 @@
     "dataSource": "mysqlDB",
     "public": true
   },
-  "Target": {
+  "AbstractTarget": {
     "dataSource": "mysqlDB",
     "public": false
   },

@@ -1,5 +1,5 @@
 {
-  "name": "Target",
+  "name": "AbstractTarget",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -7,12 +7,10 @@
   },
   "properties": {
     "name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "type": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],
@@ -20,7 +18,7 @@
     "measures": {
       "type": "hasMany",
       "model": "Measure",
-      "foreignKey": "targetId"
+      "polymorphic": { "as": "target" }
     }
   },
   "acls": [],

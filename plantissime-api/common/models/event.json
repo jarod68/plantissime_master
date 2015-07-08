@@ -29,8 +29,7 @@
   "relations": {
     "target": {
       "type": "belongsTo",
-      "model": "Plant",
-      "foreignKey": ""
+      "polymorphic": true
     }
   },
   "acls": [],

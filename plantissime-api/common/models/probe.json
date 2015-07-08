@@ -20,6 +20,10 @@
     "varName": {
       "type": "string",
       "required": true
+    },
+    "isLocal": {
+      "type": "boolean",
+      "required": false
     }
   },
   "validations": [],

@@ -1,6 +1,6 @@
 {
   "name": "Sensor",
-  "base": "PersistedModel",
+  "base": "AbstractTarget",
   "idInjection": true,
   "options": {
     "validateUpsert": true
