@@ -5,29 +5,6 @@ module.exports = function(Plant) {
         console.log('-- Event created =>', err, data);
   };
   
-  var activeAlert = function(targetId, alertCode, alertActive) {
-    console.log('activeAlert', targetId, alertCode, alertActive);
-    
-    // Search an active alert
-    Plant.app.models.Event.findOne({ where: { targetId: targetId, targetType: 'Plant', code: alertCode, expiredAt: null }, order: 'time DESC' }, function(err, currentAlert) {
-      console.log('-- Current Alert ==>', err, currentAlert);
-      // If no active alert or alert expired and we must active one
-      if ((currentAlert == null || currentAlert.expiredAt < new Date()) && alertActive) {
-        // Create an active alert
-        Plant.app.models.Event.create({ time: new Date(), code: alertCode, source: 'addMeasure', level: 2, targetId: targetId, targetType: 'Plant' }, function(err, data) {
-          console.log('-- Alert created ==>', err, data);
-        });
-      }
-      // Else if there is an current active alert and it's not expired and we must desactive it
-      else if (currentAlert != null && currentAlert.expiredAt == null && !alertActive) {
-        currentAlert.expiredAt = new Date();
-        currentAlert.save(function(err, data) {
-          console.log('-- Alert updated ==>', err, data);
-        });
-      }
-    });
-  };
-
   Plant.prototype.addMeasure = function(value, measureType) {
     // Measure creation
     var measureToAdd = { 
@@ -77,7 +54,9 @@ module.exports = function(Plant) {
               }
             }
             
-            activeAlert(targetId, alertCode, alertActive);
+            if(alertCode) {
+              Plant.app.models.Event.activeAlert(targetId, 'Plant', alertCode, alertActive);
+            }
           }
         }
       }

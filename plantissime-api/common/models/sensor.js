@@ -1,4 +1,5 @@
 module.exports = function(Sensor) {
+    var BATTERY_THRESHOLD = 20;
   
   Sensor.prototype.addMeasure = function(value, measureType) {
     // Measure creation
@@ -12,6 +13,10 @@ module.exports = function(Sensor) {
     Sensor.app.models.Measure.create(measureToAdd, function(err, data) {
       console.log('-- Measure created =>', err, data);
     });
+    
+    if(measureType == 'batteryLevel') {
+      Sensor.app.models.Event.activeAlert(measureToAdd.targetId, 'Sensor', 'batteryLow', (value < BATTERY_THRESHOLD));
+    }
   };
     
   Sensor.receive = function(data, cb) {

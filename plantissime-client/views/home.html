@@ -37,6 +37,9 @@
 	      			<div class="summary" ng-switch-when="max-groundHumidity">
 								<a class="user" href="#/plants/{{alert.target.id}}">{{alert.target.name}}</a> has too much water
 							</div>
+	      			<div class="summary" ng-switch-when="batteryLow">
+								<a class="user" href="#/settings">{{alert.target.name}} {{alert.target.itemNumber}}</a> has low power
+							</div>
 	      			<div class="summary" ng-switch-default>
 								<a class="user" href="#/plants/{{alert.target.id}}">{{alert.target.name}}</a> {{alert.code}}
 							</div>
