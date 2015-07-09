@@ -11,6 +11,8 @@ show_usage() {
 |   install			install plantissime
 |   start <options>		start plantissime 
 |   stop <options>		stop plantissime
+|   restart <options>		restart plantissime
+|   status			status
 | 
 | Options:
 |   -a 				for only app
@@ -27,7 +29,7 @@ show_error() {
 }
 
 services=()
-parseServices() {
+services_parse() {
 	OPTIND=2
 	while getopts "mar" opt; do
 		case $opt in
@@ -53,75 +55,81 @@ parseServices() {
 }
 
 # Start
-startServices() {
+services_start() {
 	index=0
 	while [ "$index" -lt "${#services[@]}" ]
 	do    
 	  case ${services[$index]} in
 			"mysql")
-				startMysql
+				echo "| Starting MySQL . . ."
+				service mysql start
 				;;
 			"app")
-				startApp
+				echo "| Starting Plantissime App . . ."
+				forever start -a --uid "planti-app" plantissime-api
 				;;
 			"receive")
-				startReceive
+				echo "| Starting Receive Script . . ."
+				forever start -a --uid "planti-receive" -c ./scripts/receive.py
 				;;
 		esac
 	  let "index = $index + 1"
 	done
-}
-
-startMysql() {
-	echo "| Starting MySQL . . ."
-	service mysql start
-}
-
-startApp() {
-	echo "| Starting Plantissime App . . ."
-	forever start -a --uid "planti-app" plantissime-api
-}
-
-startReceive() {
-	echo "| Starting Receive Script . . ."
-	forever start -a --uid "planti-receive" -c ./scripts/receive.py
 }
 
 # Stop
-stopServices() {
+services_stop() {
 	index=0
 	while [ "$index" -lt "${#services[@]}" ]
 	do    
 	  case ${services[$index]} in
 			"mysql")
-				stopMysql
+				echo "| Stopping MySQL . . ."
+				service mysql stop
 				;;
 			"app")
-				stopApp
+				echo "| Stopping Plantissime App . . ."
+				forever stop "planti-app" 
 				;;
 			"receive")
-				stopReceive
+				echo "| Stopping Receive Script . . ."
+				forever stop "planti-receive" 
 				;;
 		esac
 	  let "index = $index + 1"
 	done
 }
 
-stopMysql() {
-	echo "| Stopping MySQL . . ."
-	service mysql stop
+# Status
+services_restart() {
+	index=0
+	while [ "$index" -lt "${#services[@]}" ]
+	do    
+	  case ${services[$index]} in
+			"mysql")
+				echo "| Restarting MySQL . . ."
+				service mysql stop
+				service mysql start
+				;;
+			"app")
+				echo "| Restarting Plantissime App . . ."
+				`forever restart -s "planti-app"` 2>/dev/null
+				;;
+			"receive")
+				echo "| Restarting Receive Script . . ."
+				`forever restart "planti-receive"` 2>/dev/null
+				;;
+		esac
+	  let "index = $index + 1"
+	done
 }
 
-stopApp() {
-	echo "| Stopping Plantissime App . . ."
-	forever stop "planti-app" 
+services_status() {
+	echo "| Plantissime status :"
+	`forever columns set uid uptime logfile` 2>/dev/null
+	forever list
+	`forever columns reset` 2>/dev/null
 }
-
-stopReceive() {
-	echo "| Stopping Receive Script . . ."
-	forever stop "planti-receive" 
-}
-
 
 case $1 in
 	"help")
@@ -131,12 +139,19 @@ case $1 in
 		./scripts/install.sh
 		;;
 	"start")
-		parseServices $@
-		startServices
+		services_parse $@
+		services_start
 		;;
 	"stop")
-		parseServices $@
-		stopServices
+		services_parse $@
+		services_stop
+		;;	
+	"restart")
+		services_parse $@
+		services_restart
+		;;
+	"status")
+		services_status
 		;;
 	*) 
 		show_error "Unknown command: $1"
