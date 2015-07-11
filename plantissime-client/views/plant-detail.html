@@ -1,33 +1,77 @@
-<h1 class="ui dividing header">{{plant.name}} <small>informations</small></h1>
+<h1 class="ui header">
+	<i class="leaf icon"></i>
+	<div class="content">{{plant.name}}	<div class="sub header">Overview</div></div>
+</h1>
+
 <div class="ui two column vertical padded grid">
   <div class="twelve wide column">
-  	<h3 class="ui top attached header">Health status</h3>
-    <div class="ui bottom attached segment">
-			<ul>
-				<li>Last watering : {{lastWateringEvent.time | date:'medium'}}</li>
-			</ul>
+    <div class="ui red segment">
+			<a class="ui red left ribbon label"><i class="heartbeat icon" />Status</a>
+			<div class="ui list">
+				<div class="item" ng-if="alerts.length == 0">
+					<i class="green checkmark icon" />
+					<div class="content">
+						<div class="header">This plant is fine.</div>
+						<div class="description">You do good job, continue like that !</div>
+					</div>
+				</div>
+				<div class="item" ng-repeat="alert in alerts" ng-switch on="alert.code">
+					<i class="red warning icon" />
+					<div class="content" ng-switch-when="min-groundHumidity">
+						<div class="header">This plant need more water.</div>
+						<div class="description">You should consider water it more often.</div>
+					</div>
+					<div class="content" ng-switch-when="max-groundHumidity">
+						<div class="header">This plant has too much water.</div>
+						<div class="description">You should consider water it less often.</div>
+					</div>
+					<div class="content" ng-switch-default>{{alert.code}}</div>
+				</div>
+			</div>
 		</div>
-		<div class="ui top attached tabular menu">
-		  <a class="item orange" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
-		  <a class="item blue" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
-		  <a class="item yellow" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
-		  <a class="item teal" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
+    <div class="ui blue segment">
+			<a class="ui blue left ribbon label"><i class="newspaper icon" />Events</a>
+			<div class="ui list">
+				<div class="item" ng-if="events.length == 0">
+					<div class="content">
+						<div class="header">No event yet</div>
+					</div>
+				</div>
+				<div class="item" ng-repeat="event in events" ng-switch on="event.code">
+					<i class="newspaper icon" />
+					<div class="content" ng-switch-when="watering">
+						<div class="header">Watering</div>
+						<div class="description">{{event.time | date:'medium'}}</div>
+					</div>
+					<div class="content" ng-switch-default>{{event.code}}</div>
+				</div>
+			</div>
 		</div>
-    <div class="ui bottom attached tab segment active">
-		  <plant-chart type="chart" plant="plant.id" recommendations="plant.classification.recommendationsList" period="'week'" />
-		</div>
-  </div>
+    <div class="ui orange segment">
+			<a class="ui orange left ribbon label"><i class="newspaper icon" />Charts</a>
+			<div class="ui top attached tabular menu">
+			  <a class="item brown" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
+			  <a class="item blue" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
+			  <a class="item yellow" ng-class="{active: chart=='luminosity'}" ng-click="changeChart('luminosity')">Luminosity</a>
+			  <a class="item teal" ng-class="{active: chart=='temperature'}" ng-click="changeChart('temperature')">Temperature</a>
+			</div>
+	    <div class="ui bottom attached tab segment active">
+			  <plant-chart type="chart" plant="plant.id" recommendations="plant.classification.recommendationsList" period="'week'" />
+			</div>
+	  </div>
+	</div>
   <div class="four wide column">
-    <div class="ui green card">
+    <div class="ui fluid green card">
 			<div class="image">
+				<a class="ui green left ribbon label"><i class="book icon" />Classification</a>
 				<img src="/api/Pictures/PlantClassification/download/{{plant.classification.id}}.jpg" />
 			</div>
 			<div class="content">
-				<h4 class="ui horizontal divider header">Classification</h4>
+				<h4 class="ui header">Specie</h4>
 				<p />
-				<p class="center aligned">{{plant.classification.commonName}}</p>
-				<p class="center aligned">{{plant.classification.binomialName}}</p>
-				<h4 class="ui horizontal divider header">Categories</h4>
+				<p class="left aligned">{{plant.classification.commonName}}</p>
+				<p class="left aligned">{{plant.classification.binomialName}}</p>
+				<h4 class="ui header">Categories</h4>
 				<p />
 				<div class="ui labels"><span class="ui label" ng-repeat="tag in plant.classification.tags">{{tag}}</span></div>
 			</div>

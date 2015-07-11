@@ -7,13 +7,15 @@
 
 <div class="ui divided items">
 	<div class="item" ng-repeat="plant in plants">
-		<div class="image">
-			<img />
+		<div class="ui tiny image">
+			<!--<img src="/api/Pictures/PlantClassification/download/{{plant.classification.id}}.jpg" />-->
 		</div>
 		<div class="content">
 			<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
+			<div class="meta">
+      	<span>{{plant.classification.commonName}} - {{plant.classification.binomialName}}</span>
+    	</div>
 		</div>
+
 	</div>
 </div>
-
-
