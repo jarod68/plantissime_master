@@ -70,7 +70,7 @@ services_start() {
 				;;
 			"receive")
 				echo "| Starting Receive Script . . ."
-				forever start -a --uid "planti-receive" -c ./scripts/receive.py
+				forever start -a --uid "planti-receive" -c python scripts/receive.py
 				;;
 		esac
 	  let "index = $index + 1"
