@@ -2,7 +2,8 @@ var app = angular.module('PlantissimeApp', [
 	'ngRoute',
 	'planti.controllers',
 	'planti.directives',
-  'planti.services'
+  'planti.services',
+  'lbServices'
 ]);
 
 // Namespaces
