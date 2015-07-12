@@ -22,6 +22,10 @@
     "targetsType": {
       "type": "string",
       "required": true
+    },
+    "powerMax": {
+      "type": "number",
+      "default": 1000
     }
   },
   "validations": [],

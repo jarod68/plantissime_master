@@ -1,5 +1,14 @@
 module.exports = function(Sensor) {
-    var BATTERY_THRESHOLD = 20;
+  var BATTERY_THRESHOLD = 15;
+  
+  Sensor.prototype.setBatteryLevel = function(measuredValue) {
+    var sensor = this;
+    // Get sensor model
+    Sensor.app.models.SensorModel.findOne({ where: { modelNumber: sensor.modelNumber}}, function(err, sensorModel) {
+      sensor.batteryLevel = ((100 / sensorModel.powerMax) * measuredValue);
+      sensor.save();
+    });
+  };
   
   Sensor.prototype.addMeasure = function(value, measureType) {
     // Measure creation
@@ -14,7 +23,8 @@ module.exports = function(Sensor) {
       console.log('-- Measure created =>', err, data);
     });
     
-    if(measureType == 'batteryLevel') {
+    if(measureType == 'power') {
+      this.setBatteryLevel(value);
       Sensor.app.models.Event.activeAlert(measureToAdd.targetId, 'Sensor', 'batteryLow', (value < BATTERY_THRESHOLD));
     }
   };

@@ -16,9 +16,12 @@ module.exports = function(app) {
     // In order to not loose data
     app.models.Measure.updateAll({targetType: null}, {targetType: 'Plant'}, function(err, info) {
       if (err) throw err;
-      console.log('Data updated : Measure (targetType)', info); 
+      console.log('Data updated : Measure (targetType null => "Plant")', info); 
     });
-    
+    app.models.Measure.updateAll({type: "batteryLevel"}, {type: 'power'}, function(err, info) {
+      if (err) throw err;
+      console.log('Data updated : Measure (type "batteryLevel" => "power")', info); 
+    });
   });
   
   app.dataSources.mysqlDB.autoupdate('SensorPlant', function(err) {
@@ -33,7 +36,7 @@ module.exports = function(app) {
     // In order to not loose data
     app.models.Event.updateAll({targetType: null}, {targetType: 'Plant'}, function(err, info) {
       if (err) throw err;
-      console.log('Data updated : Event (targetType)', info); 
+      console.log('Data updated : Event (targetType null => "Plant")', info); 
     });
     
   });

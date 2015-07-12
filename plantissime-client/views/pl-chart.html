@@ -1,0 +1,15 @@
+<div class="ui center aligned header" ng-if="isEmpty">No data</div>
+<canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="100%"
+  data="chartData" 
+  labels="chartLabels" 
+  legend="false" 
+  options="{  scaleBeginAtZero: true,
+              pointDot: true, 
+              pointDotRadius: 1, 
+              pointHitDetectionRadius:2, 
+              animation: false, 
+              
+              scaleShowLabels: false,
+              showScale: false }"
+  series="chartSeries" />
+

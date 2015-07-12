@@ -13,6 +13,10 @@
     "itemNumber": {
       "type": "string",
       "required": true
+    },
+    "batteryLevel": {
+      "type": "number",
+      "default": 0
     }
   },
   "validations": [],

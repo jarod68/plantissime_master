@@ -5,20 +5,45 @@
 
 	<sensor-create label="'Add a new device'" callback="onSensorCreated"></sensor-create>
 
-	<table class="ui four column very basic table">
+	<table class="ui very basic table">
+		<col style="width: 10%" />
+		<col style="width: 10%" />
+		<col style="width: 20%" />
+		<col style="width: 20%" />
+		<col style="width: 40%" />
+		<col style="width: 10%" />
 		<thead>
 			<tr>
 				<th>Model number</th>
 				<th>Item number</th>
 				<th>Targets</th>
+				<th>Battery level</th>
+				<th>Battery evolution</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
-		<tr ng-repeat="sensor in sensors">
+		<tr ng-repeat="sensor in sensors" ng-init="enablePowerChart();" class="top aligned">
 			<td>{{sensor.modelNumber}}</td>
 			<td>{{sensor.itemNumber}}</td>
 			<td>
-				<div ng-repeat="target in sensor.targets"><i class="leaf icon" /> {{target.name}}</td>
+				<div ng-repeat="target in sensor.targets"><i class="leaf icon" /> {{target.name}}
+			</td>
+			<td>
+				<div class="ui accordion" >
+				  <div class="title">
+						
+						<div data-percent="{{sensor.batteryLevel}}" class="ui progress" style="width:50%">
+						  <div style="transition-duration: 300ms; width: {{sensor.batteryLevel}}%;" class="bar">
+						    <div class="progress">{{sensor.batteryLevel}}%</div>
+						  </div>
+						</div>
+					</div>
+				  <div class="content" >
+				    
+				  </div>
+				</div>
+			</td>
+			<td><pl-chart target-type="'sensor'" target-id="sensor.id" type="'power'" period="'week'" style="width:200px; height:200px;"></pl-chart></td>
 			<td>
 		  	<!--<button class="ui button" ng-click="sensorEdit(sensor)"><i class="edit icon"></i></button>-->
 		  	<button class="ui button" ng-click="sensorDelete(sensor)"><i class="delete icon"></i></button>
