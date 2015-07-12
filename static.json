@@ -6,7 +6,7 @@
   },
   "models": {
     "SensorModel": {
-      "3": "{\"modelNumber\":\"P01V01\",\"probes\":[{\"type\":\"temperature\",\"isGlobal\":true,\"varName\":\"temp\"},{\"type\":\"airHumidity\",\"isGlobal\":true,\"varName\":\"hum\"},{\"type\":\"luminosity\",\"isGlobal\":true,\"varName\":\"lum\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":0,\"varName\":\"s0\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":1,\"varName\":\"s1\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":2,\"varName\":\"s2\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":3,\"varName\":\"s3\"},{\"type\":\"power\",\"isGlobal\":false,\"targetIndex\":3,\"varName\":\"power\",\"isLocal\":true}],\"targetsCount\":4,\"targetsType\":\"Plant\",\"id\":3}"
+      "3": "{\"modelNumber\":\"P01V01\",\"probes\":[{\"type\":\"temperature\",\"isGlobal\":true,\"varName\":\"temp\"},{\"type\":\"airHumidity\",\"isGlobal\":true,\"varName\":\"hum\"},{\"type\":\"luminosity\",\"isGlobal\":true,\"varName\":\"lum\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":0,\"varName\":\"s0\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":1,\"varName\":\"s1\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":2,\"varName\":\"s2\"},{\"type\":\"groundHumidity\",\"isGlobal\":false,\"targetIndex\":3,\"varName\":\"s3\"},{\"type\":\"power\",\"isGlobal\":false,\"targetIndex\":3,\"varName\":\"power\",\"isLocal\":true}],\"targetsCount\":4,\"targetsType\":\"Plant\",\"id\":3,\"powerMax\":3400}"
     },
     "Probe": {},
     "PlantClassification": {
