@@ -13,7 +13,7 @@
 <div class="ui two column vertical padded grid">
   <div class="twelve wide column">
     <div class="ui red segment">
-			<a class="ui red left ribbon label"><i class="heartbeat icon" />Status</a>
+			<div class="ui red left ribbon label"><i class="heartbeat icon" />Status</div>
 			<div class="ui list">
 				<div class="item" ng-if="alerts.length == 0">
 					<i class="green checkmark icon" />
@@ -37,7 +37,7 @@
 			</div>
 		</div>
     <div class="ui blue segment">
-			<a class="ui blue left ribbon label"><i class="newspaper icon" />Events</a>
+			<div class="ui blue left ribbon label"><i class="newspaper icon" />Events</div>
 			<div class="ui list">
 				<div class="item" ng-if="events.length == 0">
 					<div class="content">
@@ -55,7 +55,7 @@
 			</div>
 		</div>
     <div class="ui orange segment">
-			<a class="ui orange left ribbon label"><i class="newspaper icon" />Charts</a>
+			<div class="ui orange left ribbon label"><i class="newspaper icon" />Charts</div>
 			<div class="ui top attached tabular menu">
 			  <a class="item brown" ng-class="{active: chart=='groundHumidity'}" ng-click="changeChart('groundHumidity')">Ground humidity</a>
 			  <a class="item blue" ng-class="{active: chart=='airHumidity'}" ng-click="changeChart('airHumidity')">Air humidity</a>
@@ -70,7 +70,7 @@
   <div class="four wide column">
     <div class="ui fluid green card">
 			<div class="image">
-				<a class="ui green left ribbon label"><i class="book icon" />Classification</a>
+				<div class="ui green left ribbon label"><i class="book icon" />Classification</div>
 				<img src="/api/Pictures/PlantClassification/download/{{plant.classification.id}}.jpg" />
 			</div>
 			<div class="content">
