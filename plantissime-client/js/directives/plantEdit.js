@@ -32,6 +32,9 @@ planti.directives.directive('plantEdit', function($http, Plant) {
       else {
         $http.put('/api/plants/'+plant.id, plant).success(function(data) {
           $('#PlantEditForm').modal('hide');
+          if(scope.callback) {
+            scope.callback(data);
+          }
         });
       }
     };
