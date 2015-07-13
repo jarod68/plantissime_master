@@ -1,6 +1,13 @@
 <h1 class="ui header">
 	<i class="leaf icon"></i>
-	<div class="content">{{plant.name}}	<div class="sub header">Overview</div></div>
+	<div class="content">
+		{{plant.name}}	
+		<div class="sub header">
+			<button id="button-edit" class="ui tiny basic violet compact button" title="Edit"><i class="icon edit"></i>Edit</button>
+			<button class="ui tiny basic teal compact button" title="Refresh" ng-click="refresh()"><i class="icon refresh"></i>Refresh</button>
+      <plant-edit callback="refresh" on-click-id="'button-edit'" plant-model="plant" />
+		</div>
+	</div>
 </h1>
 
 <div class="ui two column vertical padded grid">
