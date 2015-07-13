@@ -1,12 +1,29 @@
 <div class="ui secondary menu">
-  <a class="item" ng-class="{active: period=='week'}" ng-click="changePeriod('week')">Last week</a>
-  <a class="item" ng-class="{active: period=='month'}" ng-click="changePeriod('month')">Last month</a>
+  <a class="item" ng-class="{active: (period=='day'&&style=='line')}" ng-click="changeChart('day', 'line')">Last day</a>
+  <a class="item" ng-class="{active: (period=='week'&&style=='line')}" ng-click="changeChart('week', 'line')">Last week</a>
+  <a class="item" ng-class="{active: (period=='month'&&style=='line')}" ng-click="changeChart('month', 'line')">Last month</a>
+  <a class="item" ng-class="{active: (period=='day'&&style=='bar')}" ng-click="changeChart('day', 'bar')">Today, average by hour</a>
+  <a class="item" ng-class="{active: (period=='week'&&style=='bar')}" ng-click="changeChart('week', 'bar')">Last week, average by day</a>
+  <a class="item" ng-class="{active: (period=='month'&&style=='bar')}" ng-click="changeChart('month', 'bar')">Last month, average by day</a>
 </div>
 <div class="ui inverted dimmer" ng-class="{active: loading}">
   <div class="ui text loader">Loading</div>
 </div>
 <div class="ui center aligned header" ng-if="isEmpty">No data</div>
-<canvas ng-if="!isEmpty" id="{{key}}" class="chart chart-line" height="100%"
+<canvas ng-if="(!isEmpty) && style=='line'" id="{{key}}" class="chart chart-line" height="100%"
+  data="chartData" 
+  labels="chartLabels" 
+  legend="false" 
+  options="{  scaleBeginAtZero: true,
+              pointDot: false, 
+              pointDotRadius: 1, 
+              pointHitDetectionRadius:2, 
+              animation: false, 
+              datasetFill: false }"
+  series="chartSeries"
+  colours="chartColours" />
+  
+<canvas ng-if="(!isEmpty) && style=='bar'" id="{{key}}" class="chart chart-bar" height="100%"
   data="chartData" 
   labels="chartLabels" 
   legend="false" 
