@@ -136,7 +136,7 @@ planti.directives.directive('plantChart', function($http, $filter) {
                 var average = averages[index];
                 switch (by) {
                   case 'hour':
-                    byDate[$filter('date')(average.date, 'MMM d, h')] = average.value;
+                    byDate[$filter('date')(average.date, 'MMM d, h a')] = average.value;
                     break;
                 
                   case 'day':
