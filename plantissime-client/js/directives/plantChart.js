@@ -23,7 +23,7 @@ planti.directives.directive('plantChart', function($http, $filter) {
           console.log('LINE');
           switch (scope.period) {
            case 'day':
-              date.setMonth(date.getDate()-1);
+              date.setDate(date.getDate()-1);
               break;   
               
             case 'week':
