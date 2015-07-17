@@ -23,7 +23,7 @@ planti.directives.directive('plantChart', function($http, $filter) {
           console.log('LINE');
           switch (scope.period) {
            case 'day':
-              date.setMonth(date.getDate()-1);
+              date.setDate(date.getDate()-1);
               break;   
               
             case 'week':
@@ -136,7 +136,7 @@ planti.directives.directive('plantChart', function($http, $filter) {
                 var average = averages[index];
                 switch (by) {
                   case 'hour':
-                    byDate[$filter('date')(average.date, 'MMM d, h')] = average.value;
+                    byDate[$filter('date')(average.date, 'MMM d, h a')] = average.value;
                     break;
                 
                   case 'day':
