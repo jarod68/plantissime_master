@@ -35,7 +35,10 @@ def ledOff():
     GPIO.output(LED_RED_PIN, GPIO.LOW)
     GPIO.output(LED_GREEN_PIN, GPIO.LOW)
 
+timer = threading.Timer(600, ledOff)
+
 def ledOn(color):
+#    timer.cancel()
     ledOff()
     if color == Color.RED:
          GPIO.output(LED_RED_PIN, GPIO.HIGH)
@@ -47,10 +50,9 @@ def ledOn(color):
     else:
          return None
 
-def ledOnDuring(color, timeSeconds):
+def ledOnDuring10Min(color):
     ledOn(color)
-    time.sleep(timeSeconds)
-    ledOff()
+    timer.start()
 
 def readlineCR():
     rv = ""
@@ -68,9 +70,9 @@ def onReceive(payload):
 	print ("Sending to webservice... " + r.text)
 	print (payload)
         if r.status_code == 200:
-             ledOn(Color.GREEN)
+             ledOnDuring10Min(Color.GREEN)
         else:
-             ledOn(Color.YELLOW)
+             ledOnDuring10Min(Color.YELLOW)
 
 def signal_handler(signal, frame):
         print('Exiting...')
