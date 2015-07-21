@@ -11,6 +11,10 @@
     },
     "type": {
       "type": "string"
+    },
+    "createdAt": {
+      "type": "date",
+      "defaultFn": "now"
     }
   },
   "validations": [],
