@@ -1,20 +1,3 @@
-planti.controllers.controller('SettingsController', function ($scope, $http) {
-  $scope.loading = true;
-  
-  $scope.goDevices = function() {
-    $scope.tab = 'devices';
-    $scope.view = 'views/sensor-list.html';
-  };
-  
-  $scope.goSpecies = function() {
-    $scope.tab = 'species';
-    $scope.view = 'views/specie-list.html';
-  };
-  
-  // Default tab
-  $scope.goDevices();
-});
-
 // Sensors List
 planti.controllers.controller('SensorsController', function ($scope, $http, Sensor) {
   var loadSensors = function() {
@@ -46,13 +29,4 @@ planti.controllers.controller('SensorsController', function ($scope, $http, Sens
       console.log('Sensor ' + sensor.id + ' deleted');
     });
   };
-});
-
-// Species List
-planti.controllers.controller('SpeciesController', function ($scope, $http) {
-  $scope.loading = true;
-  $http.get('/api/plantclassifications').success(function(data) {
-    $scope.classifications = data;
-    $scope.loading = false;
-  });
 });
