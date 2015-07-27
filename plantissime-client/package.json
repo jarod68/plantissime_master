@@ -16,5 +16,11 @@
     "chart.js": "^1.0.2",
     "jquery": "^2.1.4",
     "semantic-ui-css": "^2.0.0"
+  },
+  "devDependencies": {
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.2.0"
   }
 }
