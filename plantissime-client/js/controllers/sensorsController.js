@@ -23,8 +23,17 @@ planti.controllers.controller('SensorsController', function ($scope, $http, Sens
     loadSensors();
   };
   
-  $scope.sensorDelete = function(sensor) {
+  $scope.showSensor = function(sensor) {
+    $scope.selectedSensor = sensor;
+  };
+  
+  $scope.editSensor = function(sensor) {
+    // TODO
+  };
+  
+  $scope.deleteSensor = function(sensor) {
     $http.delete('/api/sensors/'+sensor.id).success(function(data) {
+      $scope.selectedSensor = null;
       $scope.sensors.splice($scope.sensors.indexOf(sensor),  1);
       console.log('Sensor ' + sensor.id + ' deleted');
     });
