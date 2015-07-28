@@ -3,6 +3,7 @@ var app = angular.module('PlantissimeApp', [
 	'planti.controllers',
 	'planti.directives',
   'planti.services',
+  'planti.filters',
   'lbServices'
 ]);
 
@@ -11,6 +12,7 @@ var planti = {};
 planti.controllers = angular.module('planti.controllers', ["chart.js"]);
 planti.directives = angular.module('planti.directives', []);
 planti.services = angular.module('planti.services', ['ngResource']);
+planti.filters = angular.module('planti.filters', []);
 
 // Routing
 app.config(['$routeProvider',
