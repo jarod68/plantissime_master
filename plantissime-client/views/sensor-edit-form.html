@@ -1,0 +1,25 @@
+<div class="ui form">
+  <div class="two fields">
+    <div class="field">
+  	  <label>Model</label>
+  	  {{sensor.modelNumber}}
+    </div>
+    <div class="field">
+  	  <label>Item</label>
+  	  {{sensor.itemNumber}}
+    </div>
+  </div>
+  <div class="field" ng-repeat="n in [model.targetsCount] | range">
+  	<label>{{model.targetsType}} {{n + 1}}</label>
+    <div class="two fields">
+      <div class="thirteen wide field">
+        <select ng-model="sensor.targets[$index]" ng-options="target.name for target in targets">
+          <option value="">-- Choose --</option>
+        </select>
+      </div>
+      <div class="three wide field">
+        <plant-create label="'New'" callback="sensorCreateStep2" />
+      </div>
+    </div>
+  </div>
+</div>

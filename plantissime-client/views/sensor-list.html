@@ -45,18 +45,34 @@
 			</table>
 		</div>
 
-		<div class="height wide column" ng-if="selectedSensor!=null">
-			<h3 class="ui header">{{selectedSensor.itemNumber}}</h3>
-			<button class="ui tiny compact basic right floated button" ng-click="deleteSensor(selectedSensor)"><i class="delete icon"></i>Delete</button>
-			<!--<button class="ui tiny compact right floated basic button" ng-click="editSensor(selectedSensor)"><i class="edit icon"></i>Edit</button>-->
+		<div class="height wide column" ng-if="sensorToShow!=null">
+			<h3 class="ui header">{{sensorToShow.itemNumber}}</h3>
+			<button class="ui red compact basic right floated button" ng-click="deleteSensor(sensorToShow)"><i class="delete icon"></i>Delete</button>
+			<button class="ui teal compact right floated basic button" ng-click="editSensor(sensorToShow)"><i class="edit icon"></i>Edit</button>
 			<h4 class="ui header">General information</h4>
 			<ul>
-				<li>Model number : {{selectedSensor.modelNumber}}</li>
-				<li>Item number : {{selectedSensor.itemNumber}}</li>
-				<li>Targets : <ul><li ng-repeat="target in selectedSensor.targets"><i class="leaf icon" />{{target.name}}</li></ul></li>
-				<li>Date added : {{selectedSensor.createdAt | date:'medium'}}</li>
+				<li>Model number : {{sensorToShow.modelNumber}}</li>
+				<li>Item number : {{sensorToShow.itemNumber}}</li>
+				<li>Targets : <ul><li ng-repeat="target in sensorToShow.targets"><i class="leaf icon" />{{target.name}}</li></ul></li>
+				<li>Date added : {{sensorToShow.createdAt | date:'medium'}}</li>
 			</ul>
 			<h4 class="ui header">Weekly power evolution</h4>
-			<pl-chart target-type="'sensor'" target-id="selectedSensor.id" type="'power'" period="'week'" style="width:200px; height:200px;"></pl-chart>
+			<pl-chart target-type="'sensor'" target-id="sensorToShow.id" type="'power'" period="'week'" style="width:200px; height:200px;"></pl-chart>
 		</div>
+		
+		<!-- Modal to edit sensor -->
+	  <div id="SensorEditModal" class="ui modal">
+    	<i class="close icon"></i>
+    	<div class="header">Add a plant</div>
+    	<div class="content">
+				<sensor-edit-form sensor="sensorToEdit" targets="sensorToEditTargets" model="sensorToEditModel"></sensor-edit-form>
+			</div>
+	    <div class="actions">
+	      <button type="submit" class="ui right labeled icon positive button" ng-click="editSensorConfirm(plant);">
+	        Confirm
+	        <i class="checkmark icon"></i>
+	      </button>
+	      <button type="submit" class="ui black deny button">Cancel</button>
+	    </div>
+	  </div>
 	</div>
