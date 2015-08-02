@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  sensorCreate directive
+ *  Description :
+ *  Year        :  2015
+ */
 planti.directives.directive('sensorCreate', function($http) {
   
   function link ($scope, element, attrs) {

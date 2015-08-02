@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  Plantissime Application
+ *  Description : 
+ *  Year        :  2015
+ */
 var app = angular.module('PlantissimeApp', [
 	'ngRoute',
 	'planti.controllers',

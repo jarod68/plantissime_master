@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  PlantDetailController
+ *  Description :
+ *  Year        :  2015
+ */
 planti.controllers.controller('PlantDetailController', function ($scope, $http, $routeParams, $interval, Plant, Event) {
 
   // Function to load/reload plant data

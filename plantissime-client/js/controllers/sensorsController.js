@@ -1,4 +1,10 @@
-// Sensors List
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  SensorsController
+ *  Description :
+ *  Year        :  2015
+ */
 planti.controllers.controller('SensorsController', function ($scope, $http, Sensor) {
   var loadSensors = function() {
     $scope.loading = true;

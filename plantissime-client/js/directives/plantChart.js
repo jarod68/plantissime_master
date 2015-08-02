@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  plantChart directive
+ *  Description :
+ *  Year        :  2015
+ */
 planti.directives.directive('plantChart', function($http, $filter) {
 
   function link (scope, element, attrs) {
