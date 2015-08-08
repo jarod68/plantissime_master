@@ -11,7 +11,7 @@
 			<!--<img src="/api/Pictures/PlantClassification/download/{{plant.classification.id}}.jpg" />-->
 		</div>
 		<div class="content">
-			<a class="header" href="#/plants/{{plant.id}}">{{plant.name}}</a>
+			<a class="header" ui-sref="plantsDetail({ plantId: plant.id })">{{plant.name}}</a>
 			<div class="meta">
       	<span>{{plant.classification.commonName}} - {{plant.classification.binomialName}}</span>
     	</div>
