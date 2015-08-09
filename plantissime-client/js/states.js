@@ -48,5 +48,10 @@ plantiApp.config(function ($stateProvider, $urlRouterProvider) {
 			url: '/species',
 			templateUrl: 'views/admin.species.html',
 			controller: 'SpeciesController'
+    })
+		.state('admin.models', {
+			url: '/models',
+			templateUrl: 'views/admin.models.html',
+			controller: 'ModelsController'
     });
 });
