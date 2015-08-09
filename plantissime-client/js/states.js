@@ -10,14 +10,19 @@ plantiApp.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'views/home.html',
       controller: 'HomeController'
     })
-    .state('plants', {
+		.state('plants', {
+			abstract: true,
       url: '/plants',
-      templateUrl: 'views/plant-list.html',
+			templateUrl: 'views/plants.html'
+		})
+    .state('plants.list', {
+      url: '',
+      templateUrl: 'views/plants.list.html',
       controller: 'PlantsController'
     })
-    .state('plantsDetail', {
+    .state('plants.detail', {
       url: '/{plantId:[0-9]{1,4}}',
-			templateUrl: 'views/plant-detail.html',
+			templateUrl: 'views/plants.detail.html',
 			controller: 'PlantDetailController'
     })
     .state('settings', {

@@ -21,7 +21,7 @@
 	</head>
 	<body class="full height">
 		<div>
-			<div id="part-menu">
+			<div id="part-menu" ng-controller="MenuController">
 				<div class="ui vertical inverted labeled icon menu fixed" style="min-height:100%;">
 					<div class="item">
 						<b>Plantissime</b>
@@ -30,15 +30,15 @@
 	          <i class="home icon"></i>
 	          <small>Home</small>
 	        </a>
-					<a class="item" ui-sref="plants" ui-sref-active="active">
+					<a class="item" ui-sref="plants.list" ng-class="{active: state.includes('plants')}">
 	          <i class="leaf icon inverted"></i>
 	          <small>Plants</small>
 	        </a>
-					<a class="item" ui-sref="settings.sensors" ui-sref-active="active">
+					<a class="item" ui-sref="settings.sensors" ng-class="{active: state.includes('settings')}">
 	          <i class="settings icon"></i>
 	          <small>Settings</small>
 	        </a>
-					<a class="item" ui-sref="admin.species" ui-sref-active="active">
+					<a class="item" ui-sref="admin.species" ng-class="{active: state.includes('admin')}">
 	          <i class="configure icon"></i>
 	          <small>Admin</small>
 	        </a>

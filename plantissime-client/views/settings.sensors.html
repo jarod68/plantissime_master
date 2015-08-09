@@ -17,7 +17,7 @@
 						<th>Battery level</th>
 					</tr>
 				</thead>
-				<tr ng-repeat="sensor in sensors" ng-init="enablePowerChart();" class="top aligned" ng-click="showSensor(sensor)" ng-class="{active: $state.includes('settings.sensors.detail, { id: sensor.id })}" style="cursor:pointer;">
+				<tr ng-repeat="sensor in sensors" ng-init="enablePowerChart();" class="top aligned" ng-click="showSensor(sensor)" ng-class="{active: $state.includes('settings.sensors.detail', { id: sensor.id })}" style="cursor:pointer;">
 					<td class="collapsing"></td>
 					<td class="ui padded">{{sensor.modelNumber}}</td>
 					<td>{{sensor.itemNumber}}</td>

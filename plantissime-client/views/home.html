@@ -32,16 +32,16 @@
 				  <div class="event" ng-repeat="alert in alerts">
 	    			<div class="content" ng-switch on="alert.code">
 	      			<div class="summary" ng-switch-when="min-groundHumidity">
-								<a class="user"  ui-sref="plantsDetail({ plantId: alert.target.id })">{{alert.target.name}}</a> need to be watered
+								<a class="user"  ui-sref="plants.detail({ plantId: alert.target.id })">{{alert.target.name}}</a> need to be watered
 							</div>
 	      			<div class="summary" ng-switch-when="max-groundHumidity">
-								<a class="user" ui-sref="plantsDetail({ plantId: alert.target.id })">{{alert.target.name}}</a> has too much water
+								<a class="user" ui-sref="plants.detail({ plantId: alert.target.id })">{{alert.target.name}}</a> has too much water
 							</div>
 	      			<div class="summary" ng-switch-when="batteryLow">
-								<a class="user" ui-sref="settings">{{alert.target.name}} {{alert.target.itemNumber}}</a> has low power
+								<a class="user" ui-sref="settings.sensors">{{alert.target.name}} {{alert.target.itemNumber}}</a> has low power
 							</div>
 	      			<div class="summary" ng-switch-default>
-								<a class="user" ui-sref="plantsDetail({ plantId: alert.target.id })">{{alert.target.name}}</a> {{alert.code}}
+								<a class="user" ui-sref="plants.detail({ plantId: alert.target.id })">{{alert.target.name}}</a> {{alert.code}}
 							</div>
 						</div>
 					</div>
@@ -55,11 +55,11 @@
 				  <div class="event" ng-repeat="event in events">
 	    			<div class="content" ng-switch on="event.code">
 	      			<div class="summary" ng-switch-when="watering">
-								<a class="user" ui-sref="plantsDetail({ plantId: event.target.id })">{{event.target.name}}</a> was watered
+								<a class="user" ui-sref="plants.detail({ plantId: event.target.id })">{{event.target.name}}</a> was watered
 								<div class="date">{{event.time | date:'short'}}</div>
 							</div>
 	      			<div class="summary" ng-switch-default>
-								<a class="user" ui-sref="plantsDetail({ plantId: event.target.id })">{{event.target.name}}</a> {{alert.code}}
+								<a class="user" ui-sref="plants.detail({ plantId: event.target.id })">{{event.target.name}}</a> {{alert.code}}
 								<div class="date">{{event.time | date:'short'}}</div>
 							</div>
 						</div>
