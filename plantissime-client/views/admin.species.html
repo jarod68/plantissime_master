@@ -1,0 +1,22 @@
+<table class="ui four column very basic table">
+	<thead>
+		<tr>
+			<th>Common name</th>
+			<th>Binomial name</th>
+			<th>Categories</th>
+			<th>Recommendation</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="classification in classifications">
+		<td>{{classification.commonName}}</td>
+		<td>{{classification.binomialName}}</td>
+		<td><span class="ui label" ng-repeat="tag in classification.tags">{{tag}}</span></td>
+		<td>
+			<div classs="ui celled list">
+				<div class="item" ng-repeat="recommendation in classification.recommendationsList">
+					<div class="content">{{recommendation.type}} {{recommendation.measureType}} : {{recommendation.value}}</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>

@@ -21,13 +21,9 @@ plantiApp.config(function ($stateProvider, $urlRouterProvider) {
 			controller: 'PlantDetailController'
     })
     .state('settings', {
+			abstract: true,
 			url: '/settings',
-			templateUrl: 'views/settings.html',
-			controller: 'SettingsController'
-    })
-    .state('settings.species', {
-			url: '/species',
-			templateUrl: 'views/specie-list.html'
+			templateUrl: 'views/settings.html'
     })
     .state('settings.sensors', {
 			url: '/sensors',
@@ -42,5 +38,15 @@ plantiApp.config(function ($stateProvider, $urlRouterProvider) {
 					controller: 'SensorsDetailController'
 				}
 			}
+    })
+    .state('admin', {
+			abstract: true,
+			url: '/admin',
+			templateUrl: 'views/admin.html'
+    })
+    .state('admin.species', {
+			url: '/species',
+			templateUrl: 'views/admin.species.html',
+			controller: 'SpeciesController'
     });
 });
