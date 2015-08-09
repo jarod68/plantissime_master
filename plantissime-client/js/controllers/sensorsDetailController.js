@@ -37,6 +37,7 @@ planti.controllers.controller('SensorsDetailController', function ($scope, $http
         if($scope.sensorToEdit.targets[i] != null) {
           $http.put('/api/sensors/'+$scope.sensorToEdit.id+'/targets/rel/'+$scope.sensorToEdit.targets[i].id).success(function(modelData) {
           
+						$state.reload();
           });
         }
       }
