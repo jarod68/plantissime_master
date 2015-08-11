@@ -9,6 +9,7 @@ show_usage() {
 | Commands:
 |   help			display this help and exit
 |   install			install plantissime
+|   update			update plantissime
 |   start <options>		start plantissime 
 |   stop <options>		stop plantissime
 |   restart <options>		restart plantissime
@@ -137,6 +138,9 @@ case $1 in
 		;;
 	"install")
 		./scripts/install.sh
+		;;
+	"update")
+		./scripts/update.sh
 		;;
 	"start")
 		services_parse $@
