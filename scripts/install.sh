@@ -96,11 +96,8 @@ cd plantissime-client
 npm install
 echo "${blue}   => plantissime-client installed${reset}"
 
-
-## Build semantic-ui 
-#echo " - plantissime-client : ${blue}building . . .${reset}"
-#cd semantic
-#gulp build
+## Build
+gulp
 #echo "${blue}   => plantissime-client built${reset}"
 #cd ..
 cd ..
