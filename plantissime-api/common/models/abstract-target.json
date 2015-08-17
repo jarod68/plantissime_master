@@ -22,7 +22,9 @@
     "measures": {
       "type": "hasMany",
       "model": "Measure",
-      "polymorphic": { "as": "target" }
+      "polymorphic": {
+        "as": "target"
+      }
     }
   },
   "acls": [],
