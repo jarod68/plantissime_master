@@ -16,7 +16,7 @@ var plantiApp = angular.module('PlantissimeApp', [
 
 // Namespaces
 var planti = {};
-planti.controllers = angular.module('planti.controllers', ["chart.js"]);
+planti.controllers = angular.module('planti.controllers', ["chart.js", "ngFileUpload"]);
 planti.directives = angular.module('planti.directives', []);
 planti.services = angular.module('planti.services', ['ngResource']);
 planti.filters = angular.module('planti.filters', []);

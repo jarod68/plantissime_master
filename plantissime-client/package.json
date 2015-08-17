@@ -16,6 +16,7 @@
     "angular-ui-router": "^0.2.15",
     "chart.js": "^1.0.2",
     "jquery": "^2.1.4",
+    "ng-file-upload": "^6.2.1",
     "semantic-ui-css": "^2.0.0"
   },
   "devDependencies": {

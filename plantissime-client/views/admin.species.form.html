@@ -27,6 +27,13 @@
         	</div>
 				</div>
 			</div>
+			<h4 class="ui dividing header">Picture</h4>
+			<p>
+				<img class="ui small image" ngf-src="file" ng-if="file" />
+				<span ng-if="!file">No picture yet.</span>
+			</p>
+			<button class="ui button" ngf-select ng-model="file">Select a picture</button>
+			<button class="ui button" ng-if="file">Remove</button>
 			<h4 class="ui dividing header">Recommendations</h4>
 			<table class="ui compact celled table">
 				<thead>
