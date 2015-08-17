@@ -10,7 +10,7 @@
     },
     "Probe": {},
     "PlantClassification": {
-      "1": "{\"kingdom\":\"Plantae\",\"division\":\"Magnoliophyta\",\"classe\":\"Magnoliopsida\",\"order\":\"Caryophyllales\",\"family\":\"Cactaceae\",\"genus\":\"\",\"specie\":\"\",\"id\":1,\"commonName\":\"Common\",\"binomialName\":\"Binome\",\"tags\":[\"test\"],\"recommendationsList\":[{\"measureType\":\"groundHumidity\",\"type\":\"min\",\"value\":10,\"id\":1},{\"measureType\":\"groundHumidity\",\"type\":\"max\",\"value\":100,\"id\":2},{\"measureType\":\"temperature\",\"type\":\"average\",\"value\":50,\"id\":3}]}",
+      "1": "{\"kingdom\":\"Plantae\",\"division\":\"Magnoliophyta\",\"classe\":\"Magnoliopsida\",\"order\":\"Caryophyllales\",\"family\":\"Cactaceae\",\"genus\":\"\",\"specie\":\"\",\"id\":1,\"commonName\":\"Common\",\"binomialName\":\"Binome\",\"tags\":[\"test\"],\"recommendationsList\":[{\"measureType\":\"groundHumidity\",\"type\":\"min\",\"value\":10,\"id\":1},{\"measureType\":\"groundHumidity\",\"type\":\"max\",\"value\":100,\"id\":2},{\"measureType\":\"temperature\",\"type\":\"average\",\"value\":50,\"id\":3}],\"pictureFile\":\"1.jpg\"}",
       "5": "{\"commonName\":\"Ivy\",\"binomialName\":\"Hedera helix Shamrock\",\"tags\":[\"SHAMROCK\"],\"id\":5,\"recommendationsList\":[{\"measureType\":\"groundHumidity\",\"type\":\"min\",\"value\":400,\"id\":6},{\"measureType\":\"groundHumidity\",\"type\":\"max\",\"value\":600,\"id\":7},{\"measureType\":\"temperature\",\"type\":\"average\",\"value\":22,\"id\":8}],\"kingdom\":\"Plantae\",\"division\":\"Tracheobionta\",\"classe\":\"Araliaceae\",\"order\":\"Magnoliopsida\",\"family\":\"Apiales\",\"genus\":\"\",\"specie\":\"\"}"
     }
   }
