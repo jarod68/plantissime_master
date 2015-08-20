@@ -1,3 +1,4 @@
+<button class="ui button" ui-sref="admin.species.create">Add a new classification</button>
 <table class="ui four column very basic table">
 	<thead>
 		<tr>
@@ -5,6 +6,7 @@
 			<th>Binomial name</th>
 			<th>Categories</th>
 			<th>Recommendation</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tr ng-repeat="classification in classifications">
@@ -18,6 +20,6 @@
 				</div>
 			</div>
 		</td>
+		<td><button class="ui compact icon button" ui-sref="admin.species.edit({ id: classification.id })"><i class="edit icon"></i></button>
 	</tr>
 </table>
-<button class="ui button" ui-sref="admin.species.create">Add</button>

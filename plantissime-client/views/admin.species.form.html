@@ -1,4 +1,4 @@
-<div class="ui modal" id="modal">
+<div class="ui long scrolling modal" id="modal">
   <div class="header">Plant classification</div>
 	<div class="content">
 		<div class="ui form">
@@ -28,12 +28,14 @@
 				</div>
 			</div>
 			<h4 class="ui dividing header">Picture</h4>
-			<p>
+			<div style="float:left; margin-right:6px;">
 				<img class="ui small image" ngf-src="file" ng-if="file" />
-				<span ng-if="!file">No picture yet.</span>
-			</p>
+				<img class="ui small image" ng-if="!file && specie.pictureFile" src="/api/Pictures/PlantClassification/download/{{specie.pictureFile}}" />
+				<span ng-if="!file && !specie.pictureFile">No picture yet.</span>
+			</div>
 			<button class="ui button" ngf-select ng-model="file">Select a picture</button>
 			<button class="ui button" ng-if="file">Remove</button>
+			<div class="ui clearing hidden divider"></div>
 			<h4 class="ui dividing header">Recommendations</h4>
 			<table class="ui compact celled table">
 				<thead>

@@ -19,9 +19,14 @@ planti.controllers.controller('SpeciesEditController', function ($scope, $state,
 		{ text: 'Average', value: 'average' }
 	];
 	
-	$scope.specie = { };
-	$scope.specie.tags = [];
-	$scope.specie.recommendationsList = [];
+	if ($stateParams.id != null) {
+		$scope.specie = PlantClassification.findById({ id: $stateParams.id });
+	}
+	else {
+		$scope.specie = {};
+		$scope.specie.tags = [];
+		$scope.specie.recommendationsList = [];
+	}
 	
 	function move(arr, val) {
 		for (var i = 0, j = 0, l = arr.length; i < l; i++) {
@@ -49,7 +54,7 @@ planti.controllers.controller('SpeciesEditController', function ($scope, $state,
 	}
 	
 	$scope.recRemove = function (toRemove) {
-		move($scope.specie.recommendations, toRemove);
+		move($scope.specie.recommendationsList, toRemove);
 	}
 	
     $scope.$watch('file', function (file) {
@@ -82,8 +87,12 @@ planti.controllers.controller('SpeciesEditController', function ($scope, $state,
 		.modal({
 			closable: false,
 			onApprove: function () {
-				
-				var newSpecie = PlantClassification.create($scope.specie);
+				if ($scope.specie.id != null) {
+					$scope.specie.$save();
+				}
+				else {
+					var newSpecie = PlantClassification.create($scope.specie);
+				}
 				//Picture.upload({ container: 'PlantClassification', file: '', res: obj? })
 				console.log($scope.specie);
 				$state.go('admin.species', null, { reload: true });
