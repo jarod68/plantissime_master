@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  plantEdit directive
+ *  Description :
+ *  Year        :  2015
+ */
 planti.directives.directive('plantEdit', function($http, Plant) {
 
   function link (scope, element, attrs) {

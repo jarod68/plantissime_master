@@ -1,0 +1,46 @@
+<div>
+	<div class="ui divided grid">
+		<div class="height wide column">
+			<sensor-create label="'Add a new device'" callback="onSensorCreated"></sensor-create>
+			<table class="ui very basic selectable table">
+				<col style="width: 2%" />
+				<col style="width: 19%" />
+				<col style="width: 19%" />
+				<col style="width: 30%" />
+				<col style="width: 30%" />
+				<thead>
+					<tr>
+						<th></th>
+						<th>Model number</th>
+						<th>Item number</th>
+						<th>Targets</th>
+						<th>Battery level</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="sensor in sensors" ng-init="enablePowerChart();" class="top aligned" ng-click="showSensor(sensor)" ng-class="{active: $state.includes('settings.sensors.detail', { id: sensor.id })}" style="cursor:pointer;">
+					<td class="collapsing"></td>
+					<td class="ui padded">{{sensor.modelNumber}}</td>
+					<td>{{sensor.itemNumber}}</td>
+					<td>
+						<div ng-repeat="target in sensor.targets">
+							<i class="leaf icon" />{{target.name}}
+						</div>
+					</td>
+					<td>
+						<div class="ui accordion">
+							<div class="title">
+								<div data-percent="{{sensor.batteryLevel}}" class="ui progress" style="width:80%">
+									<div style="transition-duration: 300ms; width: {{sensor.batteryLevel}}%;" class="bar">
+										<div class="progress">{{sensor.batteryLevel}}%</div>
+									</div>
+								</div>
+							</div>
+							<div class="content"></div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="height wide column" ui-view="detail"></div>
+	</div>
+</div>

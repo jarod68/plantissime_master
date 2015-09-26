@@ -1,117 +1,55 @@
 <!doctype html>
 <html lang="en" ng-app="PlantissimeApp">
-<head>
-  <meta charset="utf-8">
-  <title>Plantissime</title>
-  <link rel="stylesheet" href="node_modules/semantic-ui-css/semantic.min.css">
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="node_modules/semantic-ui-css/semantic.min.js"></script>
-    
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/style.js"></script>
-    
-  <!-- Angular -->
-  <script src="node_modules/angular/angular.js"></script>
-  <script src="node_modules/angular-route/angular-route.js"></script>
-  <script src="node_modules/angular-resource/angular-resource.js"></script>
-  
-  <!-- Angular Chart.js -->
-  <script src="node_modules/chart.js/Chart.js"></script>
-  <script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
-  <link rel="stylesheet" href="node_modules/angular-chart.js/dist/angular-chart.css">
-
-  <script src="build/plantissime.min.js"></script>
-
-</head>
-<body class="full height">
-  <div>
-    <div id="part-menu">
-      <div class="ui vertical inverted labeled icon menu fixed" style="min-height:100%;">
-        <div class="item">
-          <b>Plantissime</b>
-        </div>
-        <a class="item" href="#/home" ng-class="{active: home}">
-          <i class="home icon"></i>
-          <small>Home</small>
-        </a>
-        <a class="item" href="#/plants">
-          <i class="leaf icon inverted"></i>
-          <small>Plants</small>
-        </a>
-        <!--<a class="item" href="#/sensors">
-          <i class="eyedropper icon"></i>
-          <small>Sensors</small>
-        </a>-->
-        <!--<a class="item" href="#/weather">
-          <i class="cloud icon"></i>
-          <small>Weather</small>
-        </a>-->        
-				<!--<a class="item" ng-click="sensorCreateStep1()">
-          <i class="add icon"></i>
-          <small>Add device</small>
-        </a>-->
-        <a class="item" href="#/settings">
-          <i class="settings icon"></i>
-          <small>Settings</small>
-        </a>
-      </div>
-    </div>
-    <div id="part-content">
-      <div ng-view></div>
-    </div>
-  </div>
-
-
-</body>
-<!--
-<body class="pushable">
-  <div class="ui left vertical inverted labeled icon sidebar menu visible thin overlay">
-    <div class="item">
-      <b>Plantissime</b>
-    </div>
-    <a class="item">
-      <i class="home icon"></i>
-      <small>Home</small>
-    </a>
-    <a class="item green active">
-      <i class="leaf icon"></i>
-      <small>Plants</small>
-    </a>
-    <a class="item green active">
-      <i class="cloud icon"></i>
-      <small>Weather</small>
-    </a>
-    <a class="item">
-      <i class="settings icon"></i>
-      <small>Settings</small>
-    </a>
-  </div>
-  <div class="pusher">
-    <div class="full height">
-      <div class="ui padded centered grid">
-          <div class="two column row">
-            <div class="column">
-              <div class="ui message">Hello</div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="four wide column">
-              <div class="ui message">Hello</div>
-            </div>
-            <div class="four wide column">
-              <div class="ui message">Hello</div>
-            </div>
-            <div class="four wide column">
-              <div class="ui message">Hello</div>
-            </div>
-            <div class="four wide column">
-              <div class="ui message">Hello</div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>  
-
-
-</body>-->
+	<head>
+		<meta charset="utf-8">
+		<title>Plantissime</title>
+		<link rel="stylesheet" href="node_modules/semantic-ui-css/semantic.min.css">
+		<script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/semantic-ui-css/semantic.min.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/style.js"></script>
+		<!-- Angular -->
+		<script src="node_modules/angular/angular.js"></script>
+		<script src="node_modules/angular-ui-router/build/angular-ui-router.min.js"></script>
+		<script src="node_modules/angular-resource/angular-resource.js"></script>
+		<!-- Chart.js -->
+		<script src="node_modules/chart.js/Chart.js"></script>
+		<script src="node_modules/angular-chart.js/dist/angular-chart.js"></script>
+		<link rel="stylesheet" href="node_modules/angular-chart.js/dist/angular-chart.css">
+		<!-- ng-file-upload -->
+		<script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script> 
+		<!-- Plantissime App -->
+		<script src="build/plantissime.min.js"></script>
+	</head>
+	<body class="full height">
+		<div>
+			<div id="part-menu" ng-controller="MenuController">
+				<div class="ui vertical inverted labeled icon menu fixed" style="min-height:100%;">
+					<div class="item">
+						<b>Plantissime</b>
+					</div>
+					<a class="item" ui-sref="home" ui-sref-active="active">
+	          <i class="home icon"></i>
+	          <small>Home</small>
+	        </a>
+					<a class="item" ui-sref="plants.list" ng-class="{active: state.includes('plants')}">
+	          <i class="leaf icon inverted"></i>
+	          <small>Plants</small>
+	        </a>
+					<a class="item" ui-sref="settings.sensors" ng-class="{active: state.includes('settings')}">
+	          <i class="settings icon"></i>
+	          <small>Settings</small>
+	        </a>
+					<a class="item" ui-sref="admin.species" ng-class="{active: state.includes('admin')}">
+	          <i class="configure icon"></i>
+	          <small>Configuration</small>
+	        </a>
+				</div>
+			</div>
+			<div id="part-content">
+				<div ui-view="modal"></div>
+				<div ui-view></div>
+			</div>
+		</div>
+	</body>
 </html>

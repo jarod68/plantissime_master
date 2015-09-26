@@ -4,11 +4,10 @@
 </h1>
 
 <div class="ui top attached tabular menu">
-  <a class="item" ng-class="{active: tab=='devices'}" ng-click="goDevices();">Devices</a>
-  <a class="item" ng-class="{active: tab=='species'}" ng-click="goSpecies();">Plant classifications</a>
+  <a class="item" ui-sref="settings.sensors" ui-sref-active="active">Connected devices</a>
 </div>
 <div class="ui bottom attached tab segment active">
-  <div ng-include="view" />
+  <div ui-view />
 </div>
 
 

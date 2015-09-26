@@ -1,0 +1,76 @@
+<div class="ui long modal" id="modal">
+  <div class="header">Plant classification</div>
+	<div class="image content">
+		<div class="ui form">
+			<div class="two fields">
+				<div class="field">
+					<label>Common name</label>
+					<input type="text" ng-model="specie.commonName" />
+				</div>
+				<div class="field">
+					<label>Binomial name</label>
+					<input type="text" ng-model="specie.binomialName" />
+				</div>
+			</div>
+			<div class="field">
+				<label>Categories</label>
+      	<div class="two fields">
+        	<div class="six wide field">
+						<div class="ui right labeled left icon input">
+							<i class="tags icon"></i>
+							<input placeholder="Enter categories" type="text" ng-model="tagToAdd">
+							<a class="ui tag label" ng-click="tagAdd(tagToAdd)"><i class="ui icon add" /></a>
+						</div>
+					</div>
+        	<div class="ten wide field">
+						<div ng-repeat="tag in specie.tags" class="ui tag label" style="margin-bottom:4px; margin-right:4px;">{{tag}}<i class="delete icon" ng-click="tagRemove(tag)"></i></div>
+        	</div>
+				</div>
+			</div>
+			<h4 class="ui dividing header">Picture</h4>
+			<div style="float:left; margin-right:6px;">
+				<img class="ui small image" ngf-src="file" ng-if="file" />
+				<img class="ui small image" ng-if="!file && specie.pictureFile" src="/api/Pictures/PlantClassification/download/{{specie.pictureFile}}" />
+				<span ng-if="!file && !specie.pictureFile">No picture yet.</span>
+			</div>
+			<button class="ui button" ngf-select ng-model="file">Select a picture</button>
+			<button class="ui button" ng-if="file">Remove</button>
+			<div class="ui clearing hidden divider"></div>
+			<h4 class="ui dividing header">Recommendations</h4>
+			<table class="ui compact celled table">
+				<thead>
+					<tr>
+						<th>Measure type</th>
+						<th>Type</th>
+						<th>Value</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tr ng-repeat="recommendation in specie.recommendationsList">
+					<td>{{recommendation.measureType}}</td>
+					<td>{{recommendation.type}}</td>
+					<td>{{recommendation.value}}</td>
+					<td><button class="ui icon button" ng-click="recRemove(recommendation)"><i class="ui icon delete" /></button></td>
+				</tr>
+				<tr>
+					<td>
+						<select ng-model="recommendationToAdd.measureType">
+      				<option ng-repeat="type in measureTypes" value="{{type.value}}">{{type.text}}</option>
+						</select>
+					</td>
+					<td>
+						<select ng-model="recommendationToAdd.type">
+      				<option ng-repeat="type in types" value="{{type.value}}">{{type.text}}</option>
+						</select>
+					</td>
+					<td><input type="text" ng-model="recommendationToAdd.value" /></td>
+					<td><button class="ui icon button" ng-click="recAdd(recommendationToAdd)"><i class="ui icon add" /></button></td>
+				</tr>
+			</table>
+		</div>
+  </div>
+	<div class="actions">
+		<button type="submit" class="ui right labeled icon positive button"><i class="checkmark icon"></i>Confirm</button>
+		<button type="submit" class="ui right labeled icon deny button"><i class="cancel icon"></i>Cancel</button>
+	</div>
+</div>

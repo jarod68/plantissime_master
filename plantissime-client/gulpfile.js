@@ -12,11 +12,11 @@ gulp.task('clean', function(cb) {
   del(['build'], cb);
 });
 
-gulp.task('scripts', ['clean'], function() {
+gulp.task('build', ['clean'], function() {
   return gulp.src(paths.scripts)
     //.pipe(uglify())
     .pipe(concat('plantissime.min.js'))
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', ['scripts']);
+gulp.task('default', ['build']);

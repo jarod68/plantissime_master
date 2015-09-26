@@ -18,6 +18,9 @@
       "type": [
         "string"
       ]
+    },
+    "pictureFile": {
+      "type": "string"
     }
   },
   "validations": [],

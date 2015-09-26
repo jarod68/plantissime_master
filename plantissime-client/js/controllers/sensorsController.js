@@ -1,7 +1,14 @@
-// Sensors List
-planti.controllers.controller('SensorsController', function ($scope, $http, Sensor) {
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  SensorsController
+ *  Description :
+ *  Year        :  2015
+ */
+planti.controllers.controller('SensorsController', function ($scope, $http, $state, Sensor) {
   var loadSensors = function() {
     $scope.loading = true;
+		$scope.$state = $state;
     
     var date = new Date()
     date.setDate(date.getDate()-7);
@@ -24,48 +31,8 @@ planti.controllers.controller('SensorsController', function ($scope, $http, Sens
   };
   
   $scope.showSensor = function(sensor) {
-    $scope.sensorToShow = sensor;
+		$state.go('settings.sensors.detail', {  id: sensor.id })
   };
   
-  $scope.editSensor = function(sensor) {
-    $scope.sensorToEdit = angular.copy(sensor);
-    $http.get('/api/sensormodels/model/'+$scope.sensorToEdit.modelNumber).success(function(modelData) {
-      $scope.sensorToEditModel = modelData;
-      $http.get('/api/'+$scope.sensorToEditModel.targetsType+'s').success(function(targetsData) {
-        $scope.sensorToEditTargets = targetsData;
-        for (var i = 0; i < $scope.sensorToEdit.targets.length; i++) {
-          for(var j = 0; j < $scope.sensorToEditTargets.length; j++) {
-            if ($scope.sensorToEditTargets[j].id == $scope.sensorToEdit.targets[i].id) {
-              $scope.sensorToEdit.targets[i] = $scope.sensorToEditTargets[j];
-              console.log("match!");
-              break;
-            }
-          }
-        }
-        console.log($scope.sensorToEdit, $scope.sensorToEditModel, $scope.sensorToEditTargets);
-        $('#SensorEditModal').modal('show');
-      });
-    });
-  };
-  
-  $scope.editSensorConfirm = function() {
-    $('#SensorEditModal').modal('hide');
-    $http.delete('/api/sensors/'+$scope.sensorToEdit.id+'/targets').success(function(modelData) {
-      for (var i = 0; i < $scope.sensorToEdit.targets.length; i++) {
-        if($scope.sensorToEdit.targets[i] != null) {
-          $http.put('/api/sensors/'+$scope.sensorToEdit.id+'/targets/rel/'+$scope.sensorToEdit.targets[i].id).success(function(modelData) {
-          
-          });
-        }
-      }
-    });
-  };
-  
-  $scope.deleteSensor = function(sensor) {
-    $http.delete('/api/sensors/'+sensor.id).success(function(data) {
-      $scope.sensorToShow = null;
-      $scope.sensors.splice($scope.sensors.indexOf(sensor),  1);
-      console.log('Sensor ' + sensor.id + ' deleted');
-    });
-  };
+
 });

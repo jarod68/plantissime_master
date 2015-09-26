@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  sensorEditForm directive
+ *  Description :
+ *  Year        :  2015
+ */
 planti.directives.directive('sensorEditForm', function($http) {
   
   return {

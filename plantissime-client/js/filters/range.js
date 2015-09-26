@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  range filter
+ *  Description :
+ *  Year        :  2015
+ */
 planti.filters.filter('range', function() {
     return function(input) {
         var lowBound, highBound;

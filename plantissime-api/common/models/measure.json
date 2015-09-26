@@ -20,9 +20,7 @@
     }
   },
   "validations": [],
-  "relations": {
-
-  },
+  "relations": {},
   "acls": [],
   "methods": []
 }

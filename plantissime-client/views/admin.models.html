@@ -1,0 +1,24 @@
+<table class="ui three column very basic table">
+	<thead>
+		<tr>
+			<th>Model number</th>
+			<th>Probes</th>
+			<th>Targets</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="model in models">
+		<td>{{model.modelNumber}}</td>
+		<td>
+			<div classs="ui celled list">
+				<div class="item" ng-repeat="probe in model.probes">
+					<div class="content">
+						{{probe.varName}} ({{probe.type}})
+						<span ng-if="probe.isGlobal"> => all {{model.targetsType}}</span>
+						<span ng-if="!probe.isGlobal && !probe.isLocal"> => {{model.targetsType}} {{probe.targetIndex + 1}}</span>
+					</div>
+				</div>
+			</div>
+		</td>
+		<td>{{model.targetsCount}} {{model.targetsType}}</td>
+	</tr>
+</table>

@@ -1,3 +1,10 @@
+/*  
+ *  Plantissime Web Client 
+ *
+ *  Title       :  HomeController
+ *  Description :
+ *  Year        :  2015
+ */
 planti.controllers.controller('HomeController', function ($scope, $http, $interval) {
   $scope.section = "home";
   $scope.home = true;
